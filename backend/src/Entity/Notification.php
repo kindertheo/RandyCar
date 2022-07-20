@@ -41,7 +41,7 @@ class Notification
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_read;
+    private $read;
 
     public function getId(): ?int
     {
@@ -96,15 +96,20 @@ class Notification
         return $this;
     }
 
-    public function getIsRead(): ?bool
+    public function getRead(): ?bool
     {
-        return $this->is_read;
+        return $this->read;
     }
 
-    public function setIsRead(bool $is_read): self
+    public function setRead(bool $read): self
     {
-        $this->is_read = $is_read;
+        $this->read = $read;
 
         return $this;
+    }
+
+    public function isRead(): ?bool
+    {
+        return $this->read;
     }
 }

@@ -32,12 +32,12 @@ class Trip
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_finished;
+    private $finished;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_cancelled;
+    private $cancelled;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="trips")
@@ -98,24 +98,24 @@ class Trip
 
     public function getIsFinished(): ?bool
     {
-        return $this->is_finished;
+        return $this->finished;
     }
 
-    public function setIsFinished(bool $is_finished): self
+    public function setIsFinished(bool $finished): self
     {
-        $this->is_finished = $is_finished;
+        $this->finished = $finished;
 
         return $this;
     }
 
     public function getIsCancelled(): ?bool
     {
-        return $this->is_cancelled;
+        return $this->cancelled;
     }
 
-    public function setIsCancelled(bool $is_cancelled): self
+    public function setIsCancelled(bool $cancelled): self
     {
-        $this->is_cancelled = $is_cancelled;
+        $this->cancelled = $cancelled;
 
         return $this;
     }
@@ -178,5 +178,15 @@ class Trip
         $this->passenger->removeElement($passenger);
 
         return $this;
+    }
+
+    public function isFinished(): ?bool
+    {
+        return $this->finished;
+    }
+
+    public function isCancelled(): ?bool
+    {
+        return $this->cancelled;
     }
 }

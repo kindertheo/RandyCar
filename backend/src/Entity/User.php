@@ -466,4 +466,53 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getDriverTrips(): Collection
+    {
+        return $this->driverTrips;
+    }
+
+    public function addDriverTrip(Trip $driverTrip): self
+    {
+        if (!$this->driverTrips->contains($driverTrip)) {
+            $this->driverTrips[] = $driverTrip;
+            $driverTrip->setDriver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDriverTrip(Trip $driverTrip): self
+    {
+        if ($this->driverTrips->removeElement($driverTrip)) {
+            // set the owning side to null (unless already changed)
+            if ($driverTrip->getDriver() === $this) {
+                $driverTrip->setDriver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addPassengerTrip(Trip $passengerTrip): self
+    {
+        if (!$this->passengerTrips->contains($passengerTrip)) {
+            $this->passengerTrips[] = $passengerTrip;
+            $passengerTrip->addPassenger($this);
+        }
+
+        return $this;
+    }
+
+    public function removePassengerTrip(Trip $passengerTrip): self
+    {
+        if ($this->passengerTrips->removeElement($passengerTrip)) {
+            $passengerTrip->removePassenger($this);
+        }
+
+        return $this;
+    }
 }
