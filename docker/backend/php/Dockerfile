@@ -23,4 +23,8 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
 \
     &&  pecl install apcu && docker-php-ext-enable apcu
 
-WORKDIR /var/www/
+WORKDIR /var/www/backend
+
+COPY composer.json .
+
+RUN composer install
