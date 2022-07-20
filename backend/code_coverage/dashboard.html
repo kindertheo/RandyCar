@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/backend/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/style.css" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/backend/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Form/AddressType.php.html#10">App\Form\AddressType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#11">App\Entity\Car</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#13">App\Entity\Trip</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#11">App\Entity\Opinion</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#11">App\Entity\Notification</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#11">App\Entity\Messages</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#11">App\Entity\Mail</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#13">App\Entity\Fuel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#13">App\Entity\City</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#13">App\Entity\Address</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CarType.php.html#10">App\Form\CarType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CityType.php.html#10">App\Form\CityType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FuelType.php.html#10">App\Form\FuelType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MailType.php.html#10">App\Form\MailType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MessagesType.php.html#10">App\Form\MessagesType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/NotificationType.php.html#10">App\Form\NotificationType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/OpinionType.php.html#10">App\Form\OpinionType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/TripType.php.html#10">App\Form\TripType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/UserType.php.html#10">App\Form\UserType</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#14">App\Entity\User</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#16">App\Controller\AddressController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#16">App\Controller\CarController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#16">App\Controller\TripController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#16">App\Controller\OpinionController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#16">App\Controller\NotificationController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#16">App\Controller\MessagesController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#16">App\Controller\MailController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#16">App\Controller\FuelController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#16">App\Controller\CityController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#16">App\Controller\UserController</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#17">App\Repository\MessagesRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#17">App\Repository\TripRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#17">App\Repository\OpinionRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#17">App\Repository\NotificationRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#17">App\Repository\AddressRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#17">App\Repository\MailRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#17">App\Repository\FuelRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#17">App\Repository\CityRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#17">App\Repository\CarRepository</a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#17">App\Repository\UserRepository</a></td><td class="text-right">14%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Entity/User.php.html#14">App\Entity\User</a></td><td class="text-right">6006</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#13">App\Entity\Trip</a></td><td class="text-right">506</td></tr>
+       <tr><td><a href="Entity/Address.php.html#13">App\Entity\Address</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#13">App\Entity\Fuel</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Entity/City.php.html#13">App\Entity\City</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#16">App\Controller\UserController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#16">App\Controller\CarController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#16">App\Controller\AddressController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#16">App\Controller\TripController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#16">App\Controller\NotificationController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#16">App\Controller\MessagesController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#16">App\Controller\MailController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#16">App\Controller\FuelController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#16">App\Controller\CityController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#16">App\Controller\OpinionController</a></td><td class="text-right">81</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#17">App\Repository\MessagesRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#17">App\Repository\TripRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#17">App\Repository\OpinionRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#17">App\Repository\NotificationRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#17">App\Repository\CarRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#17">App\Repository\MailRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#17">App\Repository\FuelRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#17">App\Repository\CityRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#17">App\Repository\AddressRepository</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#17">App\Repository\UserRepository</a></td><td class="text-right">20</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AddressController.php.html#31"><abbr title="App\Controller\AddressController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#197"><abbr title="App\Entity\User::getBio">getBio</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#130"><abbr title="App\Entity\User::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#137"><abbr title="App\Entity\User::getSurname">getSurname</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#142"><abbr title="App\Entity\User::setSurname">setSurname</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#149"><abbr title="App\Entity\User::getEmail">getEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#154"><abbr title="App\Entity\User::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#161"><abbr title="App\Entity\User::getPhone">getPhone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#166"><abbr title="App\Entity\User::setPhone">setPhone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#173"><abbr title="App\Entity\User::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#178"><abbr title="App\Entity\User::setPassword">setPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#185"><abbr title="App\Entity\User::getAvatar">getAvatar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#190"><abbr title="App\Entity\User::setAvatar">setAvatar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#202"><abbr title="App\Entity\User::setBio">setBio</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#120"><abbr title="App\Entity\User::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#209"><abbr title="App\Entity\User::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#214"><abbr title="App\Entity\User::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#221"><abbr title="App\Entity\User::getTripCount">getTripCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#226"><abbr title="App\Entity\User::setTripCount">setTripCount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#236"><abbr title="App\Entity\User::getCars">getCars</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#241"><abbr title="App\Entity\User::addCar">addCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#251"><abbr title="App\Entity\User::removeCar">removeCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#266"><abbr title="App\Entity\User::getOpinions">getOpinions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#271"><abbr title="App\Entity\User::addOpinion">addOpinion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#281"><abbr title="App\Entity\User::removeOpinion">removeOpinion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#296"><abbr title="App\Entity\User::getMails">getMails</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#301"><abbr title="App\Entity\User::addMail">addMail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#125"><abbr title="App\Entity\User::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#108"><abbr title="App\Entity\User::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#326"><abbr title="App\Entity\User::getNotifications">getNotifications</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#99"><abbr title="App\Entity\Trip::getIsFinished">getIsFinished</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#76"><abbr title="App\Entity\Opinion::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#81"><abbr title="App\Entity\Opinion::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#88"><abbr title="App\Entity\Opinion::getEmitter">getEmitter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#93"><abbr title="App\Entity\Opinion::setEmitter">setEmitter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#100"><abbr title="App\Entity\Opinion::getReceptor">getReceptor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#105"><abbr title="App\Entity\Opinion::setReceptor">setReceptor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#65"><abbr title="App\Entity\Trip::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#70"><abbr title="App\Entity\Trip::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#75"><abbr title="App\Entity\Trip::getMaxPassenger">getMaxPassenger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#80"><abbr title="App\Entity\Trip::setMaxPassenger">setMaxPassenger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#87"><abbr title="App\Entity\Trip::getDateStart">getDateStart</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#92"><abbr title="App\Entity\Trip::setDateStart">setDateStart</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#104"><abbr title="App\Entity\Trip::setIsFinished">setIsFinished</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#188"><abbr title="App\Entity\Trip::isCancelled">isCancelled</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#111"><abbr title="App\Entity\Trip::getIsCancelled">getIsCancelled</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#116"><abbr title="App\Entity\Trip::setIsCancelled">setIsCancelled</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#123"><abbr title="App\Entity\Trip::getDriver">getDriver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#128"><abbr title="App\Entity\Trip::setDriver">setDriver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#135"><abbr title="App\Entity\Trip::getStartAddress">getStartAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#140"><abbr title="App\Entity\Trip::setStartAddress">setStartAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#147"><abbr title="App\Entity\Trip::getDestinationAddress">getDestinationAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#152"><abbr title="App\Entity\Trip::setDestinationAddress">setDestinationAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#162"><abbr title="App\Entity\Trip::getPassenger">getPassenger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#167"><abbr title="App\Entity\Trip::addPassenger">addPassenger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#176"><abbr title="App\Entity\Trip::removePassenger">removePassenger</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#183"><abbr title="App\Entity\Trip::isFinished">isFinished</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#311"><abbr title="App\Entity\User::removeMail">removeMail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#331"><abbr title="App\Entity\User::addNotification">addNotification</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#64"><abbr title="App\Entity\Opinion::getMessage">getMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#33"><abbr title="App\Repository\CityRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/NotificationType.php.html#23"><abbr title="App\Form\NotificationType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/OpinionType.php.html#12"><abbr title="App\Form\OpinionType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/OpinionType.php.html#23"><abbr title="App\Form\OpinionType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/TripType.php.html#12"><abbr title="App\Form\TripType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/TripType.php.html#26"><abbr title="App\Form\TripType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/UserType.php.html#12"><abbr title="App\Form\UserType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/UserType.php.html#28"><abbr title="App\Form\UserType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#24"><abbr title="App\Repository\AddressRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#33"><abbr title="App\Repository\AddressRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#24"><abbr title="App\Repository\CarRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#33"><abbr title="App\Repository\CarRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#24"><abbr title="App\Repository\CityRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#24"><abbr title="App\Repository\FuelRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MessagesType.php.html#23"><abbr title="App\Form\MessagesType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#33"><abbr title="App\Repository\FuelRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#24"><abbr title="App\Repository\MailRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#33"><abbr title="App\Repository\MailRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#24"><abbr title="App\Repository\MessagesRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#33"><abbr title="App\Repository\MessagesRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#24"><abbr title="App\Repository\NotificationRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#33"><abbr title="App\Repository\NotificationRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#24"><abbr title="App\Repository\OpinionRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#33"><abbr title="App\Repository\OpinionRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#24"><abbr title="App\Repository\TripRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#33"><abbr title="App\Repository\TripRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#24"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/NotificationType.php.html#12"><abbr title="App\Form\NotificationType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MessagesType.php.html#12"><abbr title="App\Form\MessagesType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#341"><abbr title="App\Entity\User::removeNotification">removeNotification</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#473"><abbr title="App\Entity\User::getDriverTrips">getDriverTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#356"><abbr title="App\Entity\User::getMessages">getMessages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#361"><abbr title="App\Entity\User::addMessage">addMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#371"><abbr title="App\Entity\User::removeMessage">removeMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#386"><abbr title="App\Entity\User::getReceiverMessages">getReceiverMessages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#391"><abbr title="App\Entity\User::addReceiverMessage">addReceiverMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#401"><abbr title="App\Entity\User::removeReceiverMessage">removeReceiverMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#416"><abbr title="App\Entity\User::getTrips">getTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#421"><abbr title="App\Entity\User::addTrip">addTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#431"><abbr title="App\Entity\User::removeTrip">removeTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#446"><abbr title="App\Entity\User::getPassengerTrips">getPassengerTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#451"><abbr title="App\Entity\User::addPassengerTrips">addPassengerTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#461"><abbr title="App\Entity\User::removePassengerTrips">removePassengerTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#478"><abbr title="App\Entity\User::addDriverTrip">addDriverTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MailType.php.html#22"><abbr title="App\Form\MailType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#488"><abbr title="App\Entity\User::removeDriverTrip">removeDriverTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#500"><abbr title="App\Entity\User::addPassengerTrip">addPassengerTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#510"><abbr title="App\Entity\User::removePassengerTrip">removePassengerTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/AddressType.php.html#12"><abbr title="App\Form\AddressType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/AddressType.php.html#21"><abbr title="App\Form\AddressType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CarType.php.html#12"><abbr title="App\Form\CarType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CarType.php.html#25"><abbr title="App\Form\CarType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CityType.php.html#12"><abbr title="App\Form\CityType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/CityType.php.html#20"><abbr title="App\Form\CityType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FuelType.php.html#12"><abbr title="App\Form\FuelType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/FuelType.php.html#20"><abbr title="App\Form\FuelType::configureOptions">configureOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/MailType.php.html#12"><abbr title="App\Form\MailType::buildForm">buildForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#69"><abbr title="App\Entity\Opinion::setMessage">setMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#57"><abbr title="App\Entity\Opinion::setNotation">setNotation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#52"><abbr title="App\Controller\AddressController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#58"><abbr title="App\Entity\Address::setNumber">setNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#31"><abbr title="App\Controller\TripController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#52"><abbr title="App\Controller\TripController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#62"><abbr title="App\Controller\TripController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#82"><abbr title="App\Controller\TripController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#31"><abbr title="App\Controller\UserController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#52"><abbr title="App\Controller\UserController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#62"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#82"><abbr title="App\Controller\UserController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#43"><abbr title="App\Entity\Address::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#48"><abbr title="App\Entity\Address::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#53"><abbr title="App\Entity\Address::getNumber">getNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#65"><abbr title="App\Entity\Address::getStreet">getStreet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#62"><abbr title="App\Controller\OpinionController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#70"><abbr title="App\Entity\Address::setStreet">setStreet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#77"><abbr title="App\Entity\Address::getCityId">getCityId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#82"><abbr title="App\Entity\Address::setCityId">setCityId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#92"><abbr title="App\Entity\Address::getTrips">getTrips</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#97"><abbr title="App\Entity\Address::addTrip">addTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Address.php.html#107"><abbr title="App\Entity\Address::removeTrip">removeTrip</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#57"><abbr title="App\Entity\Car::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#62"><abbr title="App\Entity\Car::getBrand">getBrand</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#67"><abbr title="App\Entity\Car::setBrand">setBrand</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#74"><abbr title="App\Entity\Car::getModel">getModel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#79"><abbr title="App\Entity\Car::setModel">setModel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#86"><abbr title="App\Entity\Car::getColor">getColor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#82"><abbr title="App\Controller\OpinionController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#52"><abbr title="App\Controller\OpinionController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#98"><abbr title="App\Entity\Car::getSeatNumber">getSeatNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#62"><abbr title="App\Controller\FuelController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#62"><abbr title="App\Controller\AddressController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#82"><abbr title="App\Controller\AddressController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#31"><abbr title="App\Controller\CarController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#52"><abbr title="App\Controller\CarController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#62"><abbr title="App\Controller\CarController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#82"><abbr title="App\Controller\CarController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#31"><abbr title="App\Controller\CityController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#52"><abbr title="App\Controller\CityController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#62"><abbr title="App\Controller\CityController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#82"><abbr title="App\Controller\CityController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#31"><abbr title="App\Controller\FuelController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#52"><abbr title="App\Controller\FuelController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#82"><abbr title="App\Controller\FuelController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#31"><abbr title="App\Controller\OpinionController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#31"><abbr title="App\Controller\MailController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#52"><abbr title="App\Controller\MailController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#62"><abbr title="App\Controller\MailController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#82"><abbr title="App\Controller\MailController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#31"><abbr title="App\Controller\MessagesController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#52"><abbr title="App\Controller\MessagesController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#62"><abbr title="App\Controller\MessagesController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#82"><abbr title="App\Controller\MessagesController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#31"><abbr title="App\Controller\NotificationController::new">new</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#52"><abbr title="App\Controller\NotificationController::show">show</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#62"><abbr title="App\Controller\NotificationController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#82"><abbr title="App\Controller\NotificationController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#91"><abbr title="App\Entity\Car::setColor">setColor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#103"><abbr title="App\Entity\Car::setSeatNumber">setSeatNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#52"><abbr title="App\Entity\Opinion::getNotation">getNotation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#105"><abbr title="App\Entity\Messages::setIsRead">setIsRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#82"><abbr title="App\Entity\Mail::getSentDate">getSentDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#87"><abbr title="App\Entity\Mail::setSentDate">setSentDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#47"><abbr title="App\Entity\Messages::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#52"><abbr title="App\Entity\Messages::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#57"><abbr title="App\Entity\Messages::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#64"><abbr title="App\Entity\Messages::getContent">getContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#69"><abbr title="App\Entity\Messages::setContent">setContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#76"><abbr title="App\Entity\Messages::getAuthor">getAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#81"><abbr title="App\Entity\Messages::setAuthor">setAuthor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#88"><abbr title="App\Entity\Messages::getReceiver">getReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#93"><abbr title="App\Entity\Messages::setReceiver">setReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Messages.php.html#100"><abbr title="App\Entity\Messages::getIsRead">getIsRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#46"><abbr title="App\Entity\Notification::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#70"><abbr title="App\Entity\Mail::getContent">getContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#51"><abbr title="App\Entity\Notification::getReceiver">getReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#56"><abbr title="App\Entity\Notification::setReceiver">setReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#63"><abbr title="App\Entity\Notification::getObject">getObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#68"><abbr title="App\Entity\Notification::setObject">setObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#75"><abbr title="App\Entity\Notification::getContent">getContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#80"><abbr title="App\Entity\Notification::setContent">setContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#87"><abbr title="App\Entity\Notification::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#92"><abbr title="App\Entity\Notification::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#99"><abbr title="App\Entity\Notification::getRead">getRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#104"><abbr title="App\Entity\Notification::setRead">setRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Notification.php.html#111"><abbr title="App\Entity\Notification::isRead">isRead</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Opinion.php.html#47"><abbr title="App\Entity\Opinion::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#75"><abbr title="App\Entity\Mail::setContent">setContent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#63"><abbr title="App\Entity\Mail::setObject">setObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#110"><abbr title="App\Entity\Car::getLicensePlate">getLicensePlate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#79"><abbr title="App\Entity\City::addAddress">addAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#115"><abbr title="App\Entity\Car::setLicensePlate">setLicensePlate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#122"><abbr title="App\Entity\Car::getOwner">getOwner</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#127"><abbr title="App\Entity\Car::setOwner">setOwner</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#134"><abbr title="App\Entity\Car::getFuel">getFuel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Car.php.html#139"><abbr title="App\Entity\Car::setFuel">setFuel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#37"><abbr title="App\Entity\City::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#42"><abbr title="App\Entity\City::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#47"><abbr title="App\Entity\City::getPostalCode">getPostalCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#52"><abbr title="App\Entity\City::setPostalCode">setPostalCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#59"><abbr title="App\Entity\City::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#64"><abbr title="App\Entity\City::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#74"><abbr title="App\Entity\City::getAddresses">getAddresses</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/City.php.html#89"><abbr title="App\Entity\City::removeAddress">removeAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#58"><abbr title="App\Entity\Mail::getObject">getObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#37"><abbr title="App\Entity\Fuel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#42"><abbr title="App\Entity\Fuel::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#47"><abbr title="App\Entity\Fuel::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#52"><abbr title="App\Entity\Fuel::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#59"><abbr title="App\Entity\Fuel::getConsumption">getConsumption</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#64"><abbr title="App\Entity\Fuel::setConsumption">setConsumption</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#74"><abbr title="App\Entity\Fuel::getCars">getCars</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#79"><abbr title="App\Entity\Fuel::addCar">addCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#89"><abbr title="App\Entity\Fuel::removeCar">removeCar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#41"><abbr title="App\Entity\Mail::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#46"><abbr title="App\Entity\Mail::getReceiver">getReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Mail.php.html#51"><abbr title="App\Entity\Mail::setReceiver">setReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#33"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/AddressController.php.html#31"><abbr title="App\Controller\AddressController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#89"><abbr title="App\Entity\Fuel::removeCar">removeCar</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#31"><abbr title="App\Controller\TripController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#62"><abbr title="App\Controller\TripController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#31"><abbr title="App\Controller\UserController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#62"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/Address.php.html#107"><abbr title="App\Entity\Address::removeTrip">removeTrip</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/City.php.html#89"><abbr title="App\Entity\City::removeAddress">removeAddress</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#62"><abbr title="App\Controller\AddressController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#31"><abbr title="App\Controller\OpinionController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#281"><abbr title="App\Entity\User::removeOpinion">removeOpinion</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#311"><abbr title="App\Entity\User::removeMail">removeMail</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#341"><abbr title="App\Entity\User::removeNotification">removeNotification</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#371"><abbr title="App\Entity\User::removeMessage">removeMessage</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#401"><abbr title="App\Entity\User::removeReceiverMessage">removeReceiverMessage</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#431"><abbr title="App\Entity\User::removeTrip">removeTrip</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#488"><abbr title="App\Entity\User::removeDriverTrip">removeDriverTrip</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#62"><abbr title="App\Controller\OpinionController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Entity/User.php.html#251"><abbr title="App\Entity\User::removeCar">removeCar</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#62"><abbr title="App\Controller\NotificationController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#62"><abbr title="App\Controller\MailController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#31"><abbr title="App\Controller\CarController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#31"><abbr title="App\Controller\CityController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#62"><abbr title="App\Controller\CityController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#31"><abbr title="App\Controller\FuelController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#62"><abbr title="App\Controller\FuelController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#31"><abbr title="App\Controller\MailController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#62"><abbr title="App\Controller\CarController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#31"><abbr title="App\Controller\NotificationController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#31"><abbr title="App\Controller\MessagesController::new">new</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#62"><abbr title="App\Controller\MessagesController::edit">edit</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/MailController.php.html#82"><abbr title="App\Controller\MailController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#24"><abbr title="App\Repository\MailRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#24"><abbr title="App\Repository\AddressRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/AddressRepository.php.html#33"><abbr title="App\Repository\AddressRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#24"><abbr title="App\Repository\CarRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/CarRepository.php.html#33"><abbr title="App\Repository\CarRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#24"><abbr title="App\Repository\CityRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/CityRepository.php.html#33"><abbr title="App\Repository\CityRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#24"><abbr title="App\Repository\FuelRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/FuelRepository.php.html#33"><abbr title="App\Repository\FuelRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#24"><abbr title="App\Repository\MessagesRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/MailRepository.php.html#33"><abbr title="App\Repository\MailRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#500"><abbr title="App\Entity\User::addPassengerTrip">addPassengerTrip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/MessagesRepository.php.html#33"><abbr title="App\Repository\MessagesRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#24"><abbr title="App\Repository\NotificationRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/NotificationRepository.php.html#33"><abbr title="App\Repository\NotificationRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#24"><abbr title="App\Repository\OpinionRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/OpinionRepository.php.html#33"><abbr title="App\Repository\OpinionRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#24"><abbr title="App\Repository\TripRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/TripRepository.php.html#33"><abbr title="App\Repository\TripRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#24"><abbr title="App\Repository\UserRepository::add">add</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#510"><abbr title="App\Entity\User::removePassengerTrip">removePassengerTrip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#461"><abbr title="App\Entity\User::removePassengerTrips">removePassengerTrips</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/AddressController.php.html#82"><abbr title="App\Controller\AddressController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#301"><abbr title="App\Entity\User::addMail">addMail</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Address.php.html#97"><abbr title="App\Entity\Address::addTrip">addTrip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/TripController.php.html#82"><abbr title="App\Controller\TripController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/City.php.html#79"><abbr title="App\Entity\City::addAddress">addAddress</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/FuelController.php.html#82"><abbr title="App\Controller\FuelController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Fuel.php.html#79"><abbr title="App\Entity\Fuel::addCar">addCar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Trip.php.html#167"><abbr title="App\Entity\Trip::addPassenger">addPassenger</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#241"><abbr title="App\Entity\User::addCar">addCar</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#271"><abbr title="App\Entity\User::addOpinion">addOpinion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/CityController.php.html#82"><abbr title="App\Controller\CityController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/OpinionController.php.html#82"><abbr title="App\Controller\OpinionController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#478"><abbr title="App\Entity\User::addDriverTrip">addDriverTrip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#331"><abbr title="App\Entity\User::addNotification">addNotification</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/MessagesController.php.html#82"><abbr title="App\Controller\MessagesController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#361"><abbr title="App\Entity\User::addMessage">addMessage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/CarController.php.html#82"><abbr title="App\Controller\CarController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#391"><abbr title="App\Entity\User::addReceiverMessage">addReceiverMessage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/NotificationController.php.html#82"><abbr title="App\Controller\NotificationController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#421"><abbr title="App\Entity\User::addTrip">addTrip</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#451"><abbr title="App\Entity\User::addPassengerTrips">addPassengerTrips</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#82"><abbr title="App\Controller\UserController::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/UserRepository.php.html#33"><abbr title="App\Repository\UserRepository::remove">remove</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.15</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.30</a> and <a href="https://phpunit.de/">PHPUnit 9.5.21</a> at Wed Jul 20 19:34:59 UTC 2022.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js" type="text/javascript"></script>
+  <script src="_js/d3.min.js" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([20,0,20,0,0,0,0,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([237,0,0,0,0,0,0,0,0,0,0,20], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[10.526315789473683,10,"<a href=\"Controller\/AddressController.php.html#16\">App\\Controller\\AddressController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/CarController.php.html#16\">App\\Controller\\CarController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/CityController.php.html#16\">App\\Controller\\CityController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/FuelController.php.html#16\">App\\Controller\\FuelController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/MailController.php.html#16\">App\\Controller\\MailController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/MessagesController.php.html#16\">App\\Controller\\MessagesController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/NotificationController.php.html#16\">App\\Controller\\NotificationController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/OpinionController.php.html#16\">App\\Controller\\OpinionController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/TripController.php.html#16\">App\\Controller\\TripController<\/a>"],[10.526315789473683,10,"<a href=\"Controller\/UserController.php.html#16\">App\\Controller\\UserController<\/a>"],[0,14,"<a href=\"Entity\/Address.php.html#13\">App\\Entity\\Address<\/a>"],[0,15,"<a href=\"Entity\/Car.php.html#11\">App\\Entity\\Car<\/a>"],[0,12,"<a href=\"Entity\/City.php.html#13\">App\\Entity\\City<\/a>"],[0,12,"<a href=\"Entity\/Fuel.php.html#13\">App\\Entity\\Fuel<\/a>"],[0,9,"<a href=\"Entity\/Mail.php.html#11\">App\\Entity\\Mail<\/a>"],[0,11,"<a href=\"Entity\/Messages.php.html#11\">App\\Entity\\Messages<\/a>"],[0,12,"<a href=\"Entity\/Notification.php.html#11\">App\\Entity\\Notification<\/a>"],[0,11,"<a href=\"Entity\/Opinion.php.html#11\">App\\Entity\\Opinion<\/a>"],[0,22,"<a href=\"Entity\/Trip.php.html#13\">App\\Entity\\Trip<\/a>"],[0,77,"<a href=\"Entity\/User.php.html#14\">App\\Entity\\User<\/a>"],[0,2,"<a href=\"Form\/AddressType.php.html#10\">App\\Form\\AddressType<\/a>"],[0,2,"<a href=\"Form\/CarType.php.html#10\">App\\Form\\CarType<\/a>"],[0,2,"<a href=\"Form\/CityType.php.html#10\">App\\Form\\CityType<\/a>"],[0,2,"<a href=\"Form\/FuelType.php.html#10\">App\\Form\\FuelType<\/a>"],[0,2,"<a href=\"Form\/MailType.php.html#10\">App\\Form\\MailType<\/a>"],[0,2,"<a href=\"Form\/MessagesType.php.html#10\">App\\Form\\MessagesType<\/a>"],[0,2,"<a href=\"Form\/NotificationType.php.html#10\">App\\Form\\NotificationType<\/a>"],[0,2,"<a href=\"Form\/OpinionType.php.html#10\">App\\Form\\OpinionType<\/a>"],[0,2,"<a href=\"Form\/TripType.php.html#10\">App\\Form\\TripType<\/a>"],[0,2,"<a href=\"Form\/UserType.php.html#10\">App\\Form\\UserType<\/a>"],[100,0,"<a href=\"Kernel.php.html#8\">App\\Kernel<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/AddressRepository.php.html#17\">App\\Repository\\AddressRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/CarRepository.php.html#17\">App\\Repository\\CarRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/CityRepository.php.html#17\">App\\Repository\\CityRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/FuelRepository.php.html#17\">App\\Repository\\FuelRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/MailRepository.php.html#17\">App\\Repository\\MailRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/MessagesRepository.php.html#17\">App\\Repository\\MessagesRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/NotificationRepository.php.html#17\">App\\Repository\\NotificationRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/OpinionRepository.php.html#17\">App\\Repository\\OpinionRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/TripRepository.php.html#17\">App\\Repository\\TripRepository<\/a>"],[14.285714285714285,5,"<a href=\"Repository\/UserRepository.php.html#17\">App\\Repository\\UserRepository<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Controller\/AddressController.php.html#21\">App\\Controller\\AddressController::index<\/a>"],[0,3,"<a href=\"Controller\/AddressController.php.html#31\">App\\Controller\\AddressController::new<\/a>"],[0,1,"<a href=\"Controller\/AddressController.php.html#52\">App\\Controller\\AddressController::show<\/a>"],[0,3,"<a href=\"Controller\/AddressController.php.html#62\">App\\Controller\\AddressController::edit<\/a>"],[0,2,"<a href=\"Controller\/AddressController.php.html#82\">App\\Controller\\AddressController::delete<\/a>"],[100,1,"<a href=\"Controller\/CarController.php.html#21\">App\\Controller\\CarController::index<\/a>"],[0,3,"<a href=\"Controller\/CarController.php.html#31\">App\\Controller\\CarController::new<\/a>"],[0,1,"<a href=\"Controller\/CarController.php.html#52\">App\\Controller\\CarController::show<\/a>"],[0,3,"<a href=\"Controller\/CarController.php.html#62\">App\\Controller\\CarController::edit<\/a>"],[0,2,"<a href=\"Controller\/CarController.php.html#82\">App\\Controller\\CarController::delete<\/a>"],[100,1,"<a href=\"Controller\/CityController.php.html#21\">App\\Controller\\CityController::index<\/a>"],[0,3,"<a href=\"Controller\/CityController.php.html#31\">App\\Controller\\CityController::new<\/a>"],[0,1,"<a href=\"Controller\/CityController.php.html#52\">App\\Controller\\CityController::show<\/a>"],[0,3,"<a href=\"Controller\/CityController.php.html#62\">App\\Controller\\CityController::edit<\/a>"],[0,2,"<a href=\"Controller\/CityController.php.html#82\">App\\Controller\\CityController::delete<\/a>"],[100,1,"<a href=\"Controller\/FuelController.php.html#21\">App\\Controller\\FuelController::index<\/a>"],[0,3,"<a href=\"Controller\/FuelController.php.html#31\">App\\Controller\\FuelController::new<\/a>"],[0,1,"<a href=\"Controller\/FuelController.php.html#52\">App\\Controller\\FuelController::show<\/a>"],[0,3,"<a href=\"Controller\/FuelController.php.html#62\">App\\Controller\\FuelController::edit<\/a>"],[0,2,"<a href=\"Controller\/FuelController.php.html#82\">App\\Controller\\FuelController::delete<\/a>"],[100,1,"<a href=\"Controller\/MailController.php.html#21\">App\\Controller\\MailController::index<\/a>"],[0,3,"<a href=\"Controller\/MailController.php.html#31\">App\\Controller\\MailController::new<\/a>"],[0,1,"<a href=\"Controller\/MailController.php.html#52\">App\\Controller\\MailController::show<\/a>"],[0,3,"<a href=\"Controller\/MailController.php.html#62\">App\\Controller\\MailController::edit<\/a>"],[0,2,"<a href=\"Controller\/MailController.php.html#82\">App\\Controller\\MailController::delete<\/a>"],[100,1,"<a href=\"Controller\/MessagesController.php.html#21\">App\\Controller\\MessagesController::index<\/a>"],[0,3,"<a href=\"Controller\/MessagesController.php.html#31\">App\\Controller\\MessagesController::new<\/a>"],[0,1,"<a href=\"Controller\/MessagesController.php.html#52\">App\\Controller\\MessagesController::show<\/a>"],[0,3,"<a href=\"Controller\/MessagesController.php.html#62\">App\\Controller\\MessagesController::edit<\/a>"],[0,2,"<a href=\"Controller\/MessagesController.php.html#82\">App\\Controller\\MessagesController::delete<\/a>"],[100,1,"<a href=\"Controller\/NotificationController.php.html#21\">App\\Controller\\NotificationController::index<\/a>"],[0,3,"<a href=\"Controller\/NotificationController.php.html#31\">App\\Controller\\NotificationController::new<\/a>"],[0,1,"<a href=\"Controller\/NotificationController.php.html#52\">App\\Controller\\NotificationController::show<\/a>"],[0,3,"<a href=\"Controller\/NotificationController.php.html#62\">App\\Controller\\NotificationController::edit<\/a>"],[0,2,"<a href=\"Controller\/NotificationController.php.html#82\">App\\Controller\\NotificationController::delete<\/a>"],[100,1,"<a href=\"Controller\/OpinionController.php.html#21\">App\\Controller\\OpinionController::index<\/a>"],[0,3,"<a href=\"Controller\/OpinionController.php.html#31\">App\\Controller\\OpinionController::new<\/a>"],[0,1,"<a href=\"Controller\/OpinionController.php.html#52\">App\\Controller\\OpinionController::show<\/a>"],[0,3,"<a href=\"Controller\/OpinionController.php.html#62\">App\\Controller\\OpinionController::edit<\/a>"],[0,2,"<a href=\"Controller\/OpinionController.php.html#82\">App\\Controller\\OpinionController::delete<\/a>"],[100,1,"<a href=\"Controller\/TripController.php.html#21\">App\\Controller\\TripController::index<\/a>"],[0,3,"<a href=\"Controller\/TripController.php.html#31\">App\\Controller\\TripController::new<\/a>"],[0,1,"<a href=\"Controller\/TripController.php.html#52\">App\\Controller\\TripController::show<\/a>"],[0,3,"<a href=\"Controller\/TripController.php.html#62\">App\\Controller\\TripController::edit<\/a>"],[0,2,"<a href=\"Controller\/TripController.php.html#82\">App\\Controller\\TripController::delete<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#21\">App\\Controller\\UserController::index<\/a>"],[0,3,"<a href=\"Controller\/UserController.php.html#31\">App\\Controller\\UserController::new<\/a>"],[0,1,"<a href=\"Controller\/UserController.php.html#52\">App\\Controller\\UserController::show<\/a>"],[0,3,"<a href=\"Controller\/UserController.php.html#62\">App\\Controller\\UserController::edit<\/a>"],[0,2,"<a href=\"Controller\/UserController.php.html#82\">App\\Controller\\UserController::delete<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#43\">App\\Entity\\Address::__construct<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#48\">App\\Entity\\Address::getId<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#53\">App\\Entity\\Address::getNumber<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#58\">App\\Entity\\Address::setNumber<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#65\">App\\Entity\\Address::getStreet<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#70\">App\\Entity\\Address::setStreet<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#77\">App\\Entity\\Address::getCityId<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#82\">App\\Entity\\Address::setCityId<\/a>"],[0,1,"<a href=\"Entity\/Address.php.html#92\">App\\Entity\\Address::getTrips<\/a>"],[0,2,"<a href=\"Entity\/Address.php.html#97\">App\\Entity\\Address::addTrip<\/a>"],[0,3,"<a href=\"Entity\/Address.php.html#107\">App\\Entity\\Address::removeTrip<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#57\">App\\Entity\\Car::getId<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#62\">App\\Entity\\Car::getBrand<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#67\">App\\Entity\\Car::setBrand<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#74\">App\\Entity\\Car::getModel<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#79\">App\\Entity\\Car::setModel<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#86\">App\\Entity\\Car::getColor<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#91\">App\\Entity\\Car::setColor<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#98\">App\\Entity\\Car::getSeatNumber<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#103\">App\\Entity\\Car::setSeatNumber<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#110\">App\\Entity\\Car::getLicensePlate<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#115\">App\\Entity\\Car::setLicensePlate<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#122\">App\\Entity\\Car::getOwner<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#127\">App\\Entity\\Car::setOwner<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#134\">App\\Entity\\Car::getFuel<\/a>"],[0,1,"<a href=\"Entity\/Car.php.html#139\">App\\Entity\\Car::setFuel<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#37\">App\\Entity\\City::__construct<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#42\">App\\Entity\\City::getId<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#47\">App\\Entity\\City::getPostalCode<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#52\">App\\Entity\\City::setPostalCode<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#59\">App\\Entity\\City::getName<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#64\">App\\Entity\\City::setName<\/a>"],[0,1,"<a href=\"Entity\/City.php.html#74\">App\\Entity\\City::getAddresses<\/a>"],[0,2,"<a href=\"Entity\/City.php.html#79\">App\\Entity\\City::addAddress<\/a>"],[0,3,"<a href=\"Entity\/City.php.html#89\">App\\Entity\\City::removeAddress<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#37\">App\\Entity\\Fuel::__construct<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#42\">App\\Entity\\Fuel::getId<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#47\">App\\Entity\\Fuel::getName<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#52\">App\\Entity\\Fuel::setName<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#59\">App\\Entity\\Fuel::getConsumption<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#64\">App\\Entity\\Fuel::setConsumption<\/a>"],[0,1,"<a href=\"Entity\/Fuel.php.html#74\">App\\Entity\\Fuel::getCars<\/a>"],[0,2,"<a href=\"Entity\/Fuel.php.html#79\">App\\Entity\\Fuel::addCar<\/a>"],[0,3,"<a href=\"Entity\/Fuel.php.html#89\">App\\Entity\\Fuel::removeCar<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#41\">App\\Entity\\Mail::getId<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#46\">App\\Entity\\Mail::getReceiver<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#51\">App\\Entity\\Mail::setReceiver<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#58\">App\\Entity\\Mail::getObject<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#63\">App\\Entity\\Mail::setObject<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#70\">App\\Entity\\Mail::getContent<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#75\">App\\Entity\\Mail::setContent<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#82\">App\\Entity\\Mail::getSentDate<\/a>"],[0,1,"<a href=\"Entity\/Mail.php.html#87\">App\\Entity\\Mail::setSentDate<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#47\">App\\Entity\\Messages::getId<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#52\">App\\Entity\\Messages::getCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#57\">App\\Entity\\Messages::setCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#64\">App\\Entity\\Messages::getContent<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#69\">App\\Entity\\Messages::setContent<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#76\">App\\Entity\\Messages::getAuthor<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#81\">App\\Entity\\Messages::setAuthor<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#88\">App\\Entity\\Messages::getReceiver<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#93\">App\\Entity\\Messages::setReceiver<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#100\">App\\Entity\\Messages::getIsRead<\/a>"],[0,1,"<a href=\"Entity\/Messages.php.html#105\">App\\Entity\\Messages::setIsRead<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#46\">App\\Entity\\Notification::getId<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#51\">App\\Entity\\Notification::getReceiver<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#56\">App\\Entity\\Notification::setReceiver<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#63\">App\\Entity\\Notification::getObject<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#68\">App\\Entity\\Notification::setObject<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#75\">App\\Entity\\Notification::getContent<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#80\">App\\Entity\\Notification::setContent<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#87\">App\\Entity\\Notification::getCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#92\">App\\Entity\\Notification::setCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#99\">App\\Entity\\Notification::getRead<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#104\">App\\Entity\\Notification::setRead<\/a>"],[0,1,"<a href=\"Entity\/Notification.php.html#111\">App\\Entity\\Notification::isRead<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#47\">App\\Entity\\Opinion::getId<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#52\">App\\Entity\\Opinion::getNotation<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#57\">App\\Entity\\Opinion::setNotation<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#64\">App\\Entity\\Opinion::getMessage<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#69\">App\\Entity\\Opinion::setMessage<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#76\">App\\Entity\\Opinion::getCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#81\">App\\Entity\\Opinion::setCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#88\">App\\Entity\\Opinion::getEmitter<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#93\">App\\Entity\\Opinion::setEmitter<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#100\">App\\Entity\\Opinion::getReceptor<\/a>"],[0,1,"<a href=\"Entity\/Opinion.php.html#105\">App\\Entity\\Opinion::setReceptor<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#65\">App\\Entity\\Trip::__construct<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#70\">App\\Entity\\Trip::getId<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#75\">App\\Entity\\Trip::getMaxPassenger<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#80\">App\\Entity\\Trip::setMaxPassenger<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#87\">App\\Entity\\Trip::getDateStart<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#92\">App\\Entity\\Trip::setDateStart<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#99\">App\\Entity\\Trip::getIsFinished<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#104\">App\\Entity\\Trip::setIsFinished<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#111\">App\\Entity\\Trip::getIsCancelled<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#116\">App\\Entity\\Trip::setIsCancelled<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#123\">App\\Entity\\Trip::getDriver<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#128\">App\\Entity\\Trip::setDriver<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#135\">App\\Entity\\Trip::getStartAddress<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#140\">App\\Entity\\Trip::setStartAddress<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#147\">App\\Entity\\Trip::getDestinationAddress<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#152\">App\\Entity\\Trip::setDestinationAddress<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#162\">App\\Entity\\Trip::getPassenger<\/a>"],[0,2,"<a href=\"Entity\/Trip.php.html#167\">App\\Entity\\Trip::addPassenger<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#176\">App\\Entity\\Trip::removePassenger<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#183\">App\\Entity\\Trip::isFinished<\/a>"],[0,1,"<a href=\"Entity\/Trip.php.html#188\">App\\Entity\\Trip::isCancelled<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#108\">App\\Entity\\User::__construct<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#120\">App\\Entity\\User::getId<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#125\">App\\Entity\\User::getName<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#130\">App\\Entity\\User::setName<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#137\">App\\Entity\\User::getSurname<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#142\">App\\Entity\\User::setSurname<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#149\">App\\Entity\\User::getEmail<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#154\">App\\Entity\\User::setEmail<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#161\">App\\Entity\\User::getPhone<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#166\">App\\Entity\\User::setPhone<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#173\">App\\Entity\\User::getPassword<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#178\">App\\Entity\\User::setPassword<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#185\">App\\Entity\\User::getAvatar<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#190\">App\\Entity\\User::setAvatar<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#197\">App\\Entity\\User::getBio<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#202\">App\\Entity\\User::setBio<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#209\">App\\Entity\\User::getCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#214\">App\\Entity\\User::setCreatedAt<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#221\">App\\Entity\\User::getTripCount<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#226\">App\\Entity\\User::setTripCount<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#236\">App\\Entity\\User::getCars<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#241\">App\\Entity\\User::addCar<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#251\">App\\Entity\\User::removeCar<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#266\">App\\Entity\\User::getOpinions<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#271\">App\\Entity\\User::addOpinion<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#281\">App\\Entity\\User::removeOpinion<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#296\">App\\Entity\\User::getMails<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#301\">App\\Entity\\User::addMail<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#311\">App\\Entity\\User::removeMail<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#326\">App\\Entity\\User::getNotifications<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#331\">App\\Entity\\User::addNotification<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#341\">App\\Entity\\User::removeNotification<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#356\">App\\Entity\\User::getMessages<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#361\">App\\Entity\\User::addMessage<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#371\">App\\Entity\\User::removeMessage<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#386\">App\\Entity\\User::getReceiverMessages<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#391\">App\\Entity\\User::addReceiverMessage<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#401\">App\\Entity\\User::removeReceiverMessage<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#416\">App\\Entity\\User::getTrips<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#421\">App\\Entity\\User::addTrip<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#431\">App\\Entity\\User::removeTrip<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#446\">App\\Entity\\User::getPassengerTrips<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#451\">App\\Entity\\User::addPassengerTrips<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#461\">App\\Entity\\User::removePassengerTrips<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#473\">App\\Entity\\User::getDriverTrips<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#478\">App\\Entity\\User::addDriverTrip<\/a>"],[0,3,"<a href=\"Entity\/User.php.html#488\">App\\Entity\\User::removeDriverTrip<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#500\">App\\Entity\\User::addPassengerTrip<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#510\">App\\Entity\\User::removePassengerTrip<\/a>"],[0,1,"<a href=\"Form\/AddressType.php.html#12\">App\\Form\\AddressType::buildForm<\/a>"],[0,1,"<a href=\"Form\/AddressType.php.html#21\">App\\Form\\AddressType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/CarType.php.html#12\">App\\Form\\CarType::buildForm<\/a>"],[0,1,"<a href=\"Form\/CarType.php.html#25\">App\\Form\\CarType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/CityType.php.html#12\">App\\Form\\CityType::buildForm<\/a>"],[0,1,"<a href=\"Form\/CityType.php.html#20\">App\\Form\\CityType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/FuelType.php.html#12\">App\\Form\\FuelType::buildForm<\/a>"],[0,1,"<a href=\"Form\/FuelType.php.html#20\">App\\Form\\FuelType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/MailType.php.html#12\">App\\Form\\MailType::buildForm<\/a>"],[0,1,"<a href=\"Form\/MailType.php.html#22\">App\\Form\\MailType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/MessagesType.php.html#12\">App\\Form\\MessagesType::buildForm<\/a>"],[0,1,"<a href=\"Form\/MessagesType.php.html#23\">App\\Form\\MessagesType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/NotificationType.php.html#12\">App\\Form\\NotificationType::buildForm<\/a>"],[0,1,"<a href=\"Form\/NotificationType.php.html#23\">App\\Form\\NotificationType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/OpinionType.php.html#12\">App\\Form\\OpinionType::buildForm<\/a>"],[0,1,"<a href=\"Form\/OpinionType.php.html#23\">App\\Form\\OpinionType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/TripType.php.html#12\">App\\Form\\TripType::buildForm<\/a>"],[0,1,"<a href=\"Form\/TripType.php.html#26\">App\\Form\\TripType::configureOptions<\/a>"],[0,1,"<a href=\"Form\/UserType.php.html#12\">App\\Form\\UserType::buildForm<\/a>"],[0,1,"<a href=\"Form\/UserType.php.html#28\">App\\Form\\UserType::configureOptions<\/a>"],[100,1,"<a href=\"Repository\/AddressRepository.php.html#19\">App\\Repository\\AddressRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/AddressRepository.php.html#24\">App\\Repository\\AddressRepository::add<\/a>"],[0,2,"<a href=\"Repository\/AddressRepository.php.html#33\">App\\Repository\\AddressRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/CarRepository.php.html#19\">App\\Repository\\CarRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/CarRepository.php.html#24\">App\\Repository\\CarRepository::add<\/a>"],[0,2,"<a href=\"Repository\/CarRepository.php.html#33\">App\\Repository\\CarRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/CityRepository.php.html#19\">App\\Repository\\CityRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/CityRepository.php.html#24\">App\\Repository\\CityRepository::add<\/a>"],[0,2,"<a href=\"Repository\/CityRepository.php.html#33\">App\\Repository\\CityRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/FuelRepository.php.html#19\">App\\Repository\\FuelRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/FuelRepository.php.html#24\">App\\Repository\\FuelRepository::add<\/a>"],[0,2,"<a href=\"Repository\/FuelRepository.php.html#33\">App\\Repository\\FuelRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/MailRepository.php.html#19\">App\\Repository\\MailRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/MailRepository.php.html#24\">App\\Repository\\MailRepository::add<\/a>"],[0,2,"<a href=\"Repository\/MailRepository.php.html#33\">App\\Repository\\MailRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/MessagesRepository.php.html#19\">App\\Repository\\MessagesRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/MessagesRepository.php.html#24\">App\\Repository\\MessagesRepository::add<\/a>"],[0,2,"<a href=\"Repository\/MessagesRepository.php.html#33\">App\\Repository\\MessagesRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/NotificationRepository.php.html#19\">App\\Repository\\NotificationRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/NotificationRepository.php.html#24\">App\\Repository\\NotificationRepository::add<\/a>"],[0,2,"<a href=\"Repository\/NotificationRepository.php.html#33\">App\\Repository\\NotificationRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/OpinionRepository.php.html#19\">App\\Repository\\OpinionRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/OpinionRepository.php.html#24\">App\\Repository\\OpinionRepository::add<\/a>"],[0,2,"<a href=\"Repository\/OpinionRepository.php.html#33\">App\\Repository\\OpinionRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/TripRepository.php.html#19\">App\\Repository\\TripRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/TripRepository.php.html#24\">App\\Repository\\TripRepository::add<\/a>"],[0,2,"<a href=\"Repository\/TripRepository.php.html#33\">App\\Repository\\TripRepository::remove<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#19\">App\\Repository\\UserRepository::__construct<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#24\">App\\Repository\\UserRepository::add<\/a>"],[0,2,"<a href=\"Repository\/UserRepository.php.html#33\">App\\Repository\\UserRepository::remove<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
