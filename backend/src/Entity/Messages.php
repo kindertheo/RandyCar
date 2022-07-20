@@ -40,7 +40,7 @@ class Messages
     private $receiver;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $is_read;
 

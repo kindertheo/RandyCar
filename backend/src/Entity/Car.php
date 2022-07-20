@@ -46,13 +46,13 @@ class Car
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cars")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $owner;
 
     /**
      * @ORM\ManyToOne(targetEntity=Fuel::class, inversedBy="cars")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $fuel_id;
+    private $fuel;
 
     public function getId(): ?int
     {
@@ -119,26 +119,26 @@ class Car
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getOwner(): ?User
     {
-        return $this->user_id;
+        return $this->owner;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setOwner(?User $owner): self
     {
-        $this->user_id = $user_id;
+        $this->owner = $owner;
 
         return $this;
     }
 
-    public function getFuelId(): ?Fuel
+    public function getFuel(): ?Fuel
     {
-        return $this->fuel_id;
+        return $this->fuel;
     }
 
-    public function setFuelId(?Fuel $fuel_id): self
+    public function setFuel(?Fuel $fuel): self
     {
-        $this->fuel_id = $fuel_id;
+        $this->fuel = $fuel;
 
         return $this;
     }
