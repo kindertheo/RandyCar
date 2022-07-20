@@ -41,7 +41,7 @@ services:
         ports:
           - "8741:80"
         volumes:
-            - .docker/backend/vhosts:/etc/apache2/sites-enabled
+            - ./docker/backend/vhosts:/etc/apache2/sites-enabled
             - ./backend:/var/www
         restart: always
         networks:
@@ -54,6 +54,7 @@ services:
             - "8082:4200"
         volumes:
             - ./frontend:/var/www/frontend
+            - /var/www/frontend/node_modules
         restart: always
         depends_on:
             - www
@@ -65,3 +66,4 @@ networks:
 
 volumes:
     db-data:
+    www:
