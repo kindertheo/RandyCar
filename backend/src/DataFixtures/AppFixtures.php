@@ -12,6 +12,7 @@ use App\Entity\City;
 use App\Entity\Address;
 use App\Entity\Messages;
 use App\Entity\Notification;
+use App\Entity\Opinion;
 
 class AppFixtures extends Fixture
 {
@@ -121,27 +122,35 @@ class AppFixtures extends Fixture
             $manager->persist($messageEntity);
         }
 
-        //Notifications 
-        $notificationArray = [];
+        // //Notifications 
+        // $notificationArray = [];
 
-        for($n = 0; $n<20; $n++) { 
-            $notificationEntity = new Notification();
+        // for($n = 0; $n<20; $n++) { 
+        //     $notificationEntity = new Notification();
 
-            $notificationEntity
-                // ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
-                // ->setObject($faker->word())
-                // ->setContent($faker->word())
-                // ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
-                // ->setRead($faker->boolean());
-                ->setRead(true);
+        //     $notificationEntity
+        //         ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
+        //         ->setObject($faker->word())
+        //         ->setContent($faker->word())
+        //         ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
+        //         ->setRead($faker->boolean());
 
-            array_push($notificationArray, $notificationEntity);
-            $manager->persist($notificationEntity);
+        //     array_push($notificationArray, $notificationEntity);
+        //     $manager->persist($notificationEntity);
+        // }
+
+        $opinionArray = [];
+        for($z=0;$z<20;$z++){
+            $opinionEntity = new Opinion();
+            $opinionEntity->setNotation($faker->biasedNumberBetween(0,5))
+                ->setMessage($faker->word())
+                ->setCreatedAt(\DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
+                ->setEmitter($userArray[random_int(0, count($userArray) - 1 )])
+                ->setReceptor($userArray[random_int(0, count($userArray) - 1 )]);
+
+                array_push($opinionArray, $opinionEntity);
+                $manager->persist($opinionEntity);
         }
-
-
-
-
 
         $manager->flush();
 
