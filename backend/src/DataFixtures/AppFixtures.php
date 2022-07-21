@@ -100,7 +100,7 @@ class AppFixtures extends Fixture
 
             $addressEntity->setNumber($faker->buildingNumber())
                 ->setStreet($faker->streetName())
-                ->setCityId(  $cityArray[random_int(0, count($cityArray) - 1 )]);
+                ->setCity(  $cityArray[random_int(0, count($cityArray) - 1 )]);
             
             array_push($addressArray, $addressEntity);
             $manager->persist($addressEntity);

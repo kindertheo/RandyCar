@@ -82,7 +82,7 @@ class City
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
-            $address->setCityId($this);
+            $address->setCity($this);
         }
 
         return $this;
@@ -92,8 +92,8 @@ class City
     {
         if ($this->addresses->removeElement($address)) {
             // set the owning side to null (unless already changed)
-            if ($address->getCityId() === $this) {
-                $address->setCityId(null);
+            if ($address->getCity() === $this) {
+                $address->setCity(null);
             }
         }
 
