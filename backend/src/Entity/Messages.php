@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\MessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use DateTime;
+use DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass=MessagesRepository::class)
@@ -99,12 +101,12 @@ class Messages
         return $this;
     }
 
-    public function getIsRead(): ?bool
+    public function getIsRead(): ?DateTime
     {
         return $this->is_read;
     }
 
-    public function setIsRead(bool $is_read): self
+    public function setIsRead(DateTime $is_read): self
     {
         $this->is_read = $is_read;
 

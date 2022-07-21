@@ -10,6 +10,8 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use App\Entity\City;
 use App\Entity\Address;
+use App\Entity\Messages;
+use App\Entity\Notification;
 
 class AppFixtures extends Fixture
 {
@@ -100,9 +102,46 @@ class AppFixtures extends Fixture
                 ->setStreet($faker->streetName())
                 ->setCityId(  $cityArray[random_int(0, count($cityArray) - 1 )]);
             
-                array_push($addressArray, $addressEntity);
-                $manager->persist($addressEntity);
+            array_push($addressArray, $addressEntity);
+            $manager->persist($addressEntity);
         }
+
+        //Messages 
+        $messageArray = [];
+
+        for($m=0;$m<=20;$m++) { 
+            $messageEntity = new Messages();
+            $messageEntity->setCreatedAt(\DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
+                ->setContent($faker->realText())
+                ->setAuthor($userArray[random_int(0, count($userArray) - 1 )])
+                ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
+                ->setIsRead($faker->dateTimeBetween('-200 days', 'now'));
+
+            array_push($messageArray, $messageEntity);
+            $manager->persist($messageEntity);
+        }
+
+        //Notifications 
+        $notificationArray = [];
+
+        for($n = 0; $n<20; $n++) { 
+            $notificationEntity = new Notification();
+
+            $notificationEntity
+                // ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
+                // ->setObject($faker->word())
+                // ->setContent($faker->word())
+                // ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
+                // ->setRead($faker->boolean());
+                ->setRead(true);
+
+            array_push($notificationArray, $notificationEntity);
+            $manager->persist($notificationEntity);
+        }
+
+
+
+
 
         $manager->flush();
 
