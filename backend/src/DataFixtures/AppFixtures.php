@@ -8,6 +8,8 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use App\Entity\City;
+use App\Entity\Address;
 
 class AppFixtures extends Fixture
 {
@@ -76,6 +78,33 @@ class AppFixtures extends Fixture
 
         }
 
+        //City 
+        $cityArray = [];
+
+        for($l =0; $l<=10; $l++) { 
+            $cityEntity = new City();
+            $cityEntity->setPostalCode(str_replace(' ', '',$faker->postcode()))
+                ->setName($faker->city());
+
+            array_push($cityArray, $cityEntity);
+            $manager->persist($cityEntity);
+        }
+
+        //Address
+        $addressArray = [];
+
+        for($k=0;$k<=20;$k++) { 
+            $addressEntity = new Address();
+
+            $addressEntity->setNumber($faker->buildingNumber())
+                ->setStreet($faker->streetName())
+                ->setCityId(  $cityArray[random_int(0, count($cityArray) - 1 )]);
+            
+                array_push($addressArray, $addressEntity);
+                $manager->persist($addressEntity);
+        }
+
         $manager->flush();
+
     }
 }
