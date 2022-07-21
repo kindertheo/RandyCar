@@ -124,21 +124,21 @@ class AppFixtures extends Fixture
         }
 
         // //Notifications 
-        // $notificationArray = [];
+        $notificationArray = [];
 
-        // for($n = 0; $n<20; $n++) { 
-        //     $notificationEntity = new Notification();
+        for($n = 0; $n<20; $n++) { 
+            $notificationEntity = new Notification();
 
-        //     $notificationEntity
-        //         ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
-        //         ->setObject($faker->word())
-        //         ->setContent($faker->word())
-        //         ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
-        //         ->setRead($faker->boolean());
+            $notificationEntity
+                ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
+                ->setObject($faker->word())
+                ->setContent($faker->word())
+                ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
+                ->setReaded($faker->boolean());
 
-        //     array_push($notificationArray, $notificationEntity);
-        //     $manager->persist($notificationEntity);
-        // }
+            array_push($notificationArray, $notificationEntity);
+            $manager->persist($notificationEntity);
+        }
 
         //Opinions
         $opinionArray = [];
