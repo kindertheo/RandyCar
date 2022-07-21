@@ -13,6 +13,7 @@ use App\Entity\Address;
 use App\Entity\Messages;
 use App\Entity\Notification;
 use App\Entity\Opinion;
+use App\Entity\Trip;
 
 class AppFixtures extends Fixture
 {
@@ -139,6 +140,7 @@ class AppFixtures extends Fixture
         //     $manager->persist($notificationEntity);
         // }
 
+        //Opinions
         $opinionArray = [];
         for($z=0;$z<20;$z++){
             $opinionEntity = new Opinion();
@@ -150,6 +152,23 @@ class AppFixtures extends Fixture
 
                 array_push($opinionArray, $opinionEntity);
                 $manager->persist($opinionEntity);
+        }
+
+        //Trips
+        $tripArray = [];
+        for($t = 0 ; $t< 20; $t++) { 
+            $tripEntity = new Trip();
+            $tripEntity->setMaxPassenger($faker->biasedNumberBetween(1,5))
+                ->setDateStart($faker->dateTimeBetween('-200 days', 'now'))
+                ->setIsFinished($faker->boolean())
+                ->setIsCancelled($faker->boolean())
+                ->setDriver($userArray[random_int(0, count($userArray) - 1 )])
+                ->setStartAddress($addressArray[random_int(0, count($addressArray) - 1 )])
+                ->setDestinationAddress($addressArray[random_int(0, count($addressArray) - 1 )])
+                ->addPassenger($userArray[random_int(0, count($userArray) - 1 )]);
+
+            array_push($tripArray, $tripEntity);
+            $manager->persist($tripEntity);
         }
 
         $manager->flush();
