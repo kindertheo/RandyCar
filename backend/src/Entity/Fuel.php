@@ -6,9 +6,11 @@ use App\Repository\FuelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=FuelRepository::class)
+ * @ApiResource
  */
 class Fuel
 {
