@@ -14,7 +14,7 @@ RUN npm i -g npm
 RUN npm install -g @angular/cli && npm cache clean --force
 RUN npm install --verbose
 
-EXPOSE 4200
+EXPOSE 4200 49153 
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200" ]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--poll", "1" ]
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
