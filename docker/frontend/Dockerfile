@@ -10,11 +10,15 @@ ENV HOME=/var/www/frontend
 WORKDIR $HOME
 
 COPY package*.json ${HOME}
-RUN npm i -g npm
+# RUN npm i -g npm
 RUN npm install -g @angular/cli && npm cache clean --force
-RUN npm install --verbose
+# RUN npm install --verbose
 
 EXPOSE 4200 49153 
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--poll", "1" ]
+COPY start.sh /
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
+# CMD ["npm", "i", "&&", "ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--poll", "1" ]
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
