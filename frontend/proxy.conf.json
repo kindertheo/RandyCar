@@ -1,0 +1,8 @@
+{
+    "symfony_api": {
+    "target": "https://symfony/api",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+    }
+}
