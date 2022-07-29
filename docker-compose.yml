@@ -59,6 +59,8 @@ services:
         volumes:
             - ./frontend:/var/www/frontend
             # - /var/www/frontend/node_modules
+        links:
+            - "www"
         environment:
             API_URL: 'www_docker_symfony:80/api'
         # restart: always
