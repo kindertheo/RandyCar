@@ -3,8 +3,8 @@ services:
 
     db:
         image: mysql
-        container_name: db_docker_symfony
-        restart: always
+        container_name: mysql
+        # restart: always
         volumes:
             - db-data:/var/lib/mysql
         environment:
@@ -14,8 +14,8 @@ services:
 
     phpmyadmin:
         image: phpmyadmin
-        container_name: phpmyadmin_docker_symfony
-        restart: always
+        container_name: phpmyadmin
+        # restart: always
         depends_on:
             - db
         ports:
@@ -27,17 +27,17 @@ services:
 
     maildev:
         image: maildev/maildev
-        container_name: maildev_docker_symfony
+        container_name: maildev
         command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
         ports:
           - "8081:80"
-        restart: always
+        # restart: always
         networks:
             - dev
 
     www:
         build: docker/backend/php
-        container_name: www_docker_symfony
+        container_name: symfony
         ports:
           - "8741:80"
         volumes:
@@ -46,21 +46,22 @@ services:
             - ./backend:/var/www/backend
         environment:
             FRONT_URL: 'angular_docker_container:4200'
-        restart: always
+        # restart: always
         networks:
             - dev
 
     angular:
         build: docker/frontend/
-        container_name: angular_docker_container
+        container_name: angular
         ports:
             - "8082:4200"
+            - "49153:49153"
         volumes:
             - ./frontend:/var/www/frontend
-            - /var/www/frontend/node_modules
+            # - /var/www/frontend/node_modules
         environment:
             API_URL: 'www_docker_symfony:80/api'
-        restart: always
+        # restart: always
         depends_on:
             - www
         networks:
