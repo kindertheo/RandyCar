@@ -20,8 +20,6 @@ class DestroyDatabaseCommand extends Command
         $output->writeln('Whoa!');
         $output->writeln('You are about to DESTROY THE DATABAAAAAAASE');
         
-        $env = $this->getContainer()->getParameter('kernel.environment');
-        $output->writeln($env);
 
         $command = $this->getApplication()->find('doctrine:database:drop');
 
