@@ -85,13 +85,11 @@ class AddressTest extends ApiTestCase
             'body' => json_encode([
                 'number' => "6",
                 'street'=> "Rue de John Doe",
-                'city' => [],
+                'city' => "api/cities/14",
                 'trips' => []
             ])
             ]
-        );
-
-        
+        );        
         $this->assertResponseIsSuccessful();
     }
 
