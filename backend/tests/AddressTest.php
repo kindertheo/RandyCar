@@ -112,6 +112,11 @@ class AddressTest extends ApiTestCase
         $allId = $this->entityManager->getRepository(Address::class)->findAll();
         $allId = count($allId);
         $randomId = random_int(1, $allId);
+
+        $allIdCities = $this->entityManager->getRepository(Address::class)->findAll();
+        $allIdCities = count($allIdCities);
+        $randomIdCities = random_int(1, $allIdCities);
+
         $req = static::createClient()->request('PUT', 'http://localhost/api/addresses/' . $randomId, [ 
             'headers' => [ 
             'Content-Type' => 'application/json',
@@ -120,7 +125,7 @@ class AddressTest extends ApiTestCase
         'body' => json_encode([
             'number' => "6",
             'street'=> "Rue de John Doe",
-            'city' => "api/cities/14",
+            'city' => "api/cities/" .$randomIdCities,
             'trips' => []
         ])
         ] );
