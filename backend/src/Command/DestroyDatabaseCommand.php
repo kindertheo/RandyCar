@@ -4,6 +4,7 @@
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,21 +15,39 @@ class DestroyDatabaseCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
-        // outputs multiple lines to the console (adding "\n" at the end of each line)
-        $output->writeln([
-            'User Creator',
-            '============',
-            '',
-        ]);
-
+        
         // outputs a message followed by a "\n"
         $output->writeln('Whoa!');
+        $output->writeln('You are about to DESTROY THE DATABAAAAAAASE');
+        
+        $env = $this->getContainer()->getParameter('kernel.environment');
+        $output->writeln($env);
 
-        // outputs a message without adding a "\n" at the end of the line
-        $output->write('You are about to ');
-        $output->write('create a user.');
+        $command = $this->getApplication()->find('doctrine:database:drop');
 
+        $arguments = [
+            '--force'  => true,
+        ];
+
+        $greetInput = new ArrayInput($arguments);
+        $returnCode = $command->run($greetInput, $output);
+
+
+
+        $command = $this->getApplication()->find('doctrine:database:create');
+        $returnCode = $command->run(new ArrayInput([]), $output);
+
+
+
+        $command = $this->getApplication()->find('doctrine:schema:create');
+        $returnCode = $command->run(new ArrayInput([]), $output);
+
+
+        $arguments = [
+            '--no-ansi' => true,
+        ];
+        $command = $this->getApplication()->find('doctrine:fixtures:load');
+        $returnCode = $command->run(new ArrayInput($arguments), $output);
 
         // ... put here the code to create the user
 
