@@ -57,6 +57,7 @@ class AddressTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
+    // TEST GET{ID}
     public function testgetById(): void 
     { 
         // findAll
@@ -75,6 +76,7 @@ class AddressTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
+    // TEST POST
     public function testPostAddress() 
     { 
         $req = static::createClient()->request('POST','http://localhost/api/addresses', [
@@ -90,6 +92,39 @@ class AddressTest extends ApiTestCase
             ])
             ]
         );        
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
+    }
+
+    // TEST DELETE 
+    public function testDeleteAddress() 
+    { 
+        $allId = $this->entityManager->getRepository(Address::class)->findAll();
+        $allId = count($allId);
+        $randomId = random_int(1, $allId);
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomId);
+        $this->assertResponseIsSuccessful();
+    }
+
+    // TEST PUT 
+    public function testPutAddress() 
+    { 
+        $allId = $this->entityManager->getRepository(Address::class)->findAll();
+        $allId = count($allId);
+        $randomId = random_int(1, $allId);
+        $req = static::createClient()->request('PUT', 'http://localhost/api/addresses/' . $randomId, [ 
+            'headers' => [ 
+            'Content-Type' => 'application/json',
+            'accept' => 'application/json'
+        ],
+        'body' => json_encode([
+            'number' => "6",
+            'street'=> "Rue de John Doe",
+            'city' => "api/cities/14",
+            'trips' => []
+        ])
+        ] );
+
         $this->assertResponseIsSuccessful();
     }
 
