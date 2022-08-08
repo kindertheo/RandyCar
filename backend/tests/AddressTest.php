@@ -107,7 +107,12 @@ class AddressTest extends ApiTestCase
         $allId = $this->entityManager->getRepository(Address::class)->findAll();
         $randomAddress = $allId[random_int(0, count($allId) -1 )];
         $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId());
-        $this->assertResponseIsSuccessful();
+        
+        if( count($randomAddress->getTrips() ) >= 1  ){
+            $this->assertResponseStatusCodeSame(500);
+        } else {
+            $this->assertResponseStatusCodeSame(204);
+        }
     }
 
     // TEST PUT 

@@ -39,7 +39,6 @@ class Address
 
     /**
      * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="start_address")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $trips;
 
