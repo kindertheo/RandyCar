@@ -4,6 +4,8 @@ namespace App\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Address;
+use App\Entity\City;
+use App\Entity\Trip;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\VarDumper\VarDumper;
@@ -79,6 +81,9 @@ class AddressTest extends ApiTestCase
     // TEST POST
     public function testPostAddress() 
     { 
+        $allIdCities = $this->entityManager->getRepository(Address::class)->findAll();
+        $allIdCities = count($allIdCities);
+        $randomIdCities = random_int(1, 10);
         $req = static::createClient()->request('POST','http://localhost/api/addresses', [
             'headers' => [ 
                 'Content-Type' => 'application/json',
@@ -87,7 +92,7 @@ class AddressTest extends ApiTestCase
             'body' => json_encode([
                 'number' => "6",
                 'street'=> "Rue de John Doe",
-                'city' => "api/cities/14",
+                'city' => "api/cities/". $randomIdCities,
                 'trips' => []
             ])
             ]
@@ -100,9 +105,8 @@ class AddressTest extends ApiTestCase
     public function testDeleteAddress() 
     { 
         $allId = $this->entityManager->getRepository(Address::class)->findAll();
-        $allId = count($allId);
-        $randomId = random_int(1, $allId);
-        $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomId);
+        $randomAddress = $allId[random_int(0, count($allId) -1 )];
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId());
         $this->assertResponseIsSuccessful();
     }
 
@@ -110,14 +114,16 @@ class AddressTest extends ApiTestCase
     public function testPutAddress() 
     { 
         $allId = $this->entityManager->getRepository(Address::class)->findAll();
-        $allId = count($allId);
-        $randomId = random_int(1, $allId);
+        $randomAddress = $allId[random_int(0, count($allId) -1 )];
 
-        $allIdCities = $this->entityManager->getRepository(Address::class)->findAll();
-        $allIdCities = count($allIdCities);
-        $randomIdCities = random_int(1, $allIdCities);
+        $allIdCities = $this->entityManager->getRepository(City::class)->findAll();
+        $randomCity = $allIdCities[random_int(0, count($allIdCities) - 1 )];
 
-        $req = static::createClient()->request('PUT', 'http://localhost/api/addresses/' . $randomId, [ 
+        $allTrips = $this->entityManager->getRepository(Trip::class)->findAll();
+        $randomTrip = $allTrips[random_int(0, count($allTrips) -1)]; 
+        
+
+        $req = static::createClient()->request('PUT', 'http://localhost/api/addresses/' . $randomAddress->getId(), [ 
             'headers' => [ 
             'Content-Type' => 'application/json',
             'accept' => 'application/json'
@@ -125,8 +131,8 @@ class AddressTest extends ApiTestCase
         'body' => json_encode([
             'number' => "6",
             'street'=> "Rue de John Doe",
-            'city' => "api/cities/" .$randomIdCities,
-            'trips' => []
+            'city' => "api/cities/" .$randomCity->getId(),
+            'trips' => ["api/trips/" .$randomTrip->getId()]
         ])
         ] );
 
