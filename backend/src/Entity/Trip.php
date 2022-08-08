@@ -49,13 +49,13 @@ class Trip
 
     /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="trips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $start_address;
 
     /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="trips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $destination_address;
 
