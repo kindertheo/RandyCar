@@ -10,6 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="`user`")
  * @ApiResource
  */
@@ -68,7 +69,7 @@ class User
     private $trip_count;
 
     /**
-     * @ORM\OneToMany(targetEntity=Car::class, mappedBy="user_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Car::class, mappedBy="owner", orphanRemoval=true)
      */
     private $cars;
 
@@ -117,6 +118,15 @@ class User
         $this->ReceiverMessages = new ArrayCollection();
         $this->driverTrips = new ArrayCollection();
         $this->passengerTrips = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onCreate()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable('now'));
+        $this->setTripCount(0);
     }
 
     public function getId(): ?int
@@ -216,7 +226,6 @@ class User
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
-
         return $this;
     }
 
@@ -244,7 +253,7 @@ class User
     {
         if (!$this->cars->contains($car)) {
             $this->cars[] = $car;
-            $car->setUserId($this);
+            $car->setOwner($this);
         }
 
         return $this;
@@ -254,8 +263,8 @@ class User
     {
         if ($this->cars->removeElement($car)) {
             // set the owning side to null (unless already changed)
-            if ($car->getUserId() === $this) {
-                $car->setUserId(null);
+            if ($car->getOwner() === $this) {
+                $car->setOwner(null);
             }
         }
 
