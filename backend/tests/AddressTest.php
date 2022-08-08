@@ -108,10 +108,14 @@ class AddressTest extends ApiTestCase
         $randomAddress = $allId[random_int(0, count($allId) -1 )];
         $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId());
         
-        if( count($randomAddress->getTrips() ) >= 1  ){
-            $this->assertResponseStatusCodeSame(500);
-        } else {
+        $countStart = count($randomAddress->getStartTrips());
+        $countEnd = count($randomAddress->getEndTrips());
+
+        //var_dump($count);
+        if( $countStart == 0 && $countEnd == 0 ){
             $this->assertResponseStatusCodeSame(204);
+        } else {
+            $this->assertResponseStatusCodeSame(500);
         }
     }
 
