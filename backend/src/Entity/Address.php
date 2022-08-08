@@ -40,11 +40,17 @@ class Address
     /**
      * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="start_address")
      */
-    private $trips;
+    private $startTrips;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="destination_address")
+     */
+    private $endTrips;
 
     public function __construct()
     {
-        $this->trips = new ArrayCollection();
+        $this->startTrips = new ArrayCollection();
+        $this->endTrips = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -91,27 +97,58 @@ class Address
     /**
      * @return Collection<int, Trip>
      */
-    public function getTrips(): Collection
+    public function getStartTrips(): Collection
     {
-        return $this->trips;
+        return $this->startTrips;
     }
 
-    public function addTrip(Trip $trip): self
+    public function addStartTrip(Trip $start_trip): self
     {
-        if (!$this->trips->contains($trip)) {
-            $this->trips[] = $trip;
-            $trip->setStartAddress($this);
+        if (!$this->startTrips->contains($start_trip)) {
+            $this->startTrips[] = $start_trip;
+            $start_trip->setStartAddress($this);
         }
 
         return $this;
     }
 
-    public function removeTrip(Trip $trip): self
+    public function removeStartTrip(Trip $start_trip): self
     {
-        if ($this->trips->removeElement($trip)) {
+        if ($this->startTrips->removeElement($start_trip)) {
             // set the owning side to null (unless already changed)
-            if ($trip->getStartAddress() === $this) {
-                $trip->setStartAddress(null);
+            if ($start_trip->getStartAddress() === $this) {
+                $start_trip->setStartAddress(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getEndTrips(): Collection
+    {
+        return $this->endTrips;
+    }
+
+    public function addEndTrip(Trip $end_trip): self
+    {
+        if (!$this->endTrips->contains($end_trip)) {
+            $this->endTrips[] = $end_trip;
+            $end_trip->setDestinationAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEndTrip(Trip $end_trip): self
+    {
+        if ($this->endTrips->removeElement($end_trip)) {
+            // set the owning side to null (unless already changed)
+            if ($end_trip->getDestinationAddress() === $this) {
+                $end_trip->setDestinationAddress(null);
             }
         }
 
