@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\Car;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 
-class UserTest extends ApiTestCase
+class CarTest extends ApiTestCase
 {
     protected function setUp(): void 
     { 
@@ -24,5 +24,18 @@ class UserTest extends ApiTestCase
         $this->entityManager = null;
     }
 
-    
+    public function testGetCar()
+    {
+        $req = static::createClient()->request('GET', 'http://localhost/api/cars');
+        $queryResult = $this->entityManager 
+            ->getRepository(Car::class)
+            ->count([]);
+
+        $content = $req->getContent();
+
+        $count = json_decode($content, true);
+        $count = $count['hydra:totalItems'];
+
+        $this->assertEquals($count, $queryResult);
+    }
 }
