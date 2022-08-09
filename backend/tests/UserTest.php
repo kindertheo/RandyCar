@@ -72,7 +72,7 @@ class UserTest extends ApiTestCase
     }
 
      // TEST POST
-     public function testPostAddress() 
+     public function testPostUser() 
      { 
          $body = [
              "name"=> "Random",
@@ -105,7 +105,48 @@ class UserTest extends ApiTestCase
 
          $this->assertResponseIsSuccessful();
          $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
-     }
+    }
 
-     
+    // DELETE
+    public function testDeleteUser() 
+    { 
+        $allUsers = $this->entityManager->getRepository(User::class)->findAll();
+        $randomUser = $allUsers[random_int(0, count($allUsers) -1 )];
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/users/' . $randomUser->getId());
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testPutUser()
+    { 
+        $allUsers = $this->entityManager->getRepository(User::class)->findAll();
+        $randomUser = $allUsers[random_int(0, count($allUsers) - 1 )];
+
+        $req = static::createClient()->request('PUT', 'http://localhost/api/users/'. $randomUser->getId(), [ 
+            'headers' => [ 
+                'Content-Type' => 'application/json',
+                'accept' => 'application/json'
+            ],
+            'body' => json_encode([
+                "name"=> "Random",
+                "surname" => "Dupont",
+                "email" => "connard@gmail.com",
+                "phone" => "3630",
+                "password" => "tamere",
+                "avatar" => "des putes",
+                "bio" => "biographie",
+                "cars" => [ "api/cars/1"],
+                "opinions" => [ "api/opinions/1"],
+                "mail" => [ "api/mail/1"],
+                "notifications" => [ "api/notifications/1"],
+                "messages" => [ "api/messages/1"],
+                "receiverMessages" => [],
+                "driverTrips" => [ ],
+                "passengerTrips" => [ ],
+                //"tripCount" => 0,
+                "trips" => []
+            ])
+            ] );
+
+        $this->assertResponseIsSuccessful();
+    } 
 }
