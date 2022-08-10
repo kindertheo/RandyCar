@@ -116,6 +116,7 @@ class UserTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    // PUT
     public function testPutUser()
     { 
         $allUsers = $this->entityManager->getRepository(User::class)->findAll();
