@@ -5,7 +5,6 @@ namespace App\Tests;
 use App\Entity\Car;
 use App\Entity\User;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 class CarTest extends ApiTestCase
 {
@@ -16,6 +15,8 @@ class CarTest extends ApiTestCase
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
+
+            
     }
 
     protected function tearDown(): void
@@ -45,45 +46,49 @@ class CarTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
+
+    //get{id}
     public function testGetById()
     {
-        $id = $this->entityManager->getRepository(Car::class);
-        $selected = $id[0];
-        $this->assertIsObject($id);
-        $index = $id->getId();
+        // findAll
+        $id = $this->entityManager->getRepository(Car::class)->findAll();
+        $objectId = $id[0];
+        $this->assertIsObject($objectId); 
+
+        //get Object + index separate
+        $index = $objectId->getId(); 
         $this->assertIsNumeric($index);
 
-        $response = static::createClient()->request('GET', 'http://localhost/api/cars'. $index);
+        // use Index as slug
+        $response = static::createClient()->request('GET', 'http://localhost/api/cars/'. $index);
 
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json', 'charset=utf-8');
+        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
-    //POST 
-    public function testPostCar() 
-    { 
-        
-        $user = $this->entityManager->getRepository(User::class)->findAll();
-        $user = $user[random_int(0, count($user) - 1)];
+    //Put 
+    public function testPutCar() 
+    {         
+
+        $carCollection = $this->entityManager->getRepository(Car::class)->findAll();
+        $carRandom = $carCollection[0]->getId();  
 
         $body = [ 
             "brand" => "testBrand",
             "model" => "modelTest",
             "color" => "colorTest",
-            "seatNumber" => random_int(0, 5),
-            "licensePlate" => "TEST1234",
-            'ownerId' => $user->getId()
+            "seatNumber" => random_int(0, count($carCollection)-1),
+            "licensePlate" => "TEST1234"
         ];
 
-        $req = static::createClient()->request('POST', 'http://localhost/api/cars', [ 
+        $req = static::createClient()->request('PUT', 'http://localhost/api/cars/'. $carRandom, [ 
             'headers' => [ 
-                'Content-Type' => 'application/json',
+                'Content-Type' => 'application/ld+json',
                 'accept' => 'application/json'
             ],
             'body' => json_encode($body)
         ]);
 
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 }
