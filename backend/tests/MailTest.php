@@ -114,4 +114,25 @@ class MailTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
+    public function putMail()
+    { 
+        $randomReceiver = $this->entityManager->getRepository(User::class)->findAll();
+        $randomReceiver = $randomReceiver[0];
+
+        $body = [ 
+            "receiver"=> $randomReceiver->getId(),
+            "object"=> "Put edition",
+            "content"=> "This is a lorem ipsum content. If you see this that mean post testing is working correctly on this project",
+            "sentDate"=> "2022-08-16T08:22:46.806Z"
+        ];
+    }
+
+    public function testDeleteOpinions() 
+    { 
+        $allId = $this->entityManager->getRepository(Mail::class)->findAll();
+        $randomOpinion = $allId[random_int(0, count($allId) -1 )];
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/mails/' . $randomOpinion->getId());
+        $this->assertResponseIsSuccessful();
+    }
+
 }
