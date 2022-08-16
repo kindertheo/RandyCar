@@ -10,6 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use App\Entity\City;
 use App\Entity\Address;
+use App\Entity\Mail;
 use App\Entity\Messages;
 use App\Entity\Notification;
 use App\Entity\Opinion;
@@ -80,6 +81,20 @@ class AppFixtures extends Fixture
             array_push($carArray, $carEntity);
             $manager->persist($carEntity);
 
+        }
+
+        //Mail 
+        $mailArray = [];
+
+        for($t=0; $t <= 10; $t++) { 
+            $mailEntity = new Mail();
+            $mailEntity->setReceiver($userArray[random_int(0, count($userArray)-1)])
+                ->setObject($faker->word())
+                ->setContent($faker->sentence(10))
+                ->setSentDate(\DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ));
+            
+            array_push($mailArray, $mailEntity);
+            $manager->persist($mailEntity);
         }
 
         //City 
