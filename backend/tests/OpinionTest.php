@@ -82,7 +82,10 @@ class OpinionTest extends ApiTestCase
     {         
 
         $opinionCollection = $this->entityManager->getRepository(Opinion::class)->findAll();
-        $opinionRandom = $opinionCollection[0]->getId();  
+        $opinionRandom = $opinionCollection[0]->getId(); 
+        $userCollection = $this->entityManager->getRepository(User::class)->findAll();
+        $userRandom = $userCollection[0]->getId();
+        $userRandom2 = $userCollection[2]->getId();  
 
         $body = [ 
             "message" => "testPut"
@@ -106,6 +109,34 @@ class OpinionTest extends ApiTestCase
         $randomOpinion = $allId[random_int(0, count($allId) -1 )];
         $req = static::createClient()->request('DELETE', 'http://localhost/api/opinions/' . $randomOpinion->getId());
         $this->assertResponseIsSuccessful();
+    }
 
+    // post 
+    public function postOpinion() { 
+
+        $randomEmitter = $this->entityManager->getRepository(User::class)->findAll();
+        $randomEmitter = $randomEmitter[random_int(0, count($randomEmitter)-1)];
+        $randomReceptor = $this->entityManager->getRepository(User::class)->findAll();
+        $randomReceptor = $randomReceptor[random_int(0, count($randomReceptor)-1)];
+
+        $body = [ 
+            "notation"=> 2,
+            "message"=> "hello world",
+            "emitter"=> $randomEmitter->getId(),
+            "receptor"=> $randomReceptor->getId(),
+            "createdAt"=> "2022-08-16T08:22:46.806Z"
+        ];
+        
+        $req = static::createClient()->request('POST','http://localhost/api/users', [
+            'headers' => [ 
+                'Content-Type' => 'application/json',
+                'accept' => 'application/json'
+            ],
+            'body' => json_encode($body)
+            ]
+        );   
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 }
