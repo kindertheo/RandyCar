@@ -127,7 +127,7 @@ class MailTest extends ApiTestCase
         ];
     }
 
-    public function testDeleteOpinions() 
+    public function testDeleteMail() 
     { 
         $allId = $this->entityManager->getRepository(Mail::class)->findAll();
         $randomOpinion = $allId[random_int(0, count($allId) -1 )];
