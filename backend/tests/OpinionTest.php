@@ -5,10 +5,6 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Opinion;
 use App\Entity\User;
-use App\Entity\Trip;
-use App\Repository\AddressRepository;
-use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\VarDumper\VarDumper;
 
 class OpinionTest extends ApiTestCase
 {
@@ -126,7 +122,7 @@ class OpinionTest extends ApiTestCase
             "receptor"=> $randomReceptor->getId(),
             "createdAt"=> "2022-08-16T08:22:46.806Z"
         ];
-        
+
         $req = static::createClient()->request('POST','http://localhost/api/users', [
             'headers' => [ 
                 'Content-Type' => 'application/json',
