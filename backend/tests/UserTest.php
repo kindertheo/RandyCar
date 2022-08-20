@@ -3,6 +3,11 @@
 namespace App\Tests;
 
 use App\Entity\User;
+use App\Entity\Mail;
+use App\Entity\Messages;
+use App\Entity\Notification;
+use App\Entity\Opinion;
+use App\Entity\Car;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 
 class UserTest extends ApiTestCase
@@ -74,6 +79,13 @@ class UserTest extends ApiTestCase
      // TEST POST
      public function testPostUser() 
      { 
+        
+        $carId = $this->getRandomIdByCollections(Car::class);
+        $opinionId = $this->getRandomIdByCollections(Opinion::class);
+        $mailId = $this->getRandomIdByCollections(Mail::class);
+        $notifId = $this->getRandomIdByCollections(Notification::class);
+        $messageId = $this->getRandomIdByCollections(Messages::class);
+
          $body = [
              "name"=> "Random",
              "surname" => "Dupont",
@@ -82,11 +94,11 @@ class UserTest extends ApiTestCase
              "password" => "tamere",
              "avatar" => "des putes",
              "bio" => "biographie",
-             "cars" => ["api/cars/1"],
-             "opinions" => [ "api/opinions/1"],
-             "mail" => [ "api/mail/1"],
-             "notifications" => [ "api/notifications/1"],
-             "messages" => [ "api/messages/1"],
+            "cars" => [ "api/cars/" . $carId ],
+            "opinions" => [ "api/opinions/" . $opinionId],
+            "mail" => [ "api/mail/" . $mailId],
+            "notifications" => [ "api/notifications/" . $notifId],
+            "messages" => [ "api/messages/" . $messageId],
              "receiverMessages" => [],
              "driverTrips" => [ ],
              "passengerTrips" => [ ],
@@ -116,11 +128,25 @@ class UserTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    private function getRandomIdByCollections($class)
+    {
+        $collections =  $this->entityManager->getRepository($class)->findAll();
+        $random = $collections[random_int(0, count($collections) - 1 )];
+        return $random->getId();
+    }
     // PUT
     public function testPutUser()
     { 
         $allUsers = $this->entityManager->getRepository(User::class)->findAll();
         $randomUser = $allUsers[random_int(0, count($allUsers) - 1 )];
+
+        $carId = $this->getRandomIdByCollections(Car::class);
+        $opinionId = $this->getRandomIdByCollections(Opinion::class);
+        $mailId = $this->getRandomIdByCollections(Mail::class);
+        $notifId = $this->getRandomIdByCollections(Notification::class);
+        $messageId = $this->getRandomIdByCollections(Messages::class);
+
+
 
         $req = static::createClient()->request('PUT', 'http://localhost/api/users/'. $randomUser->getId(), [ 
             'headers' => [ 
@@ -135,11 +161,11 @@ class UserTest extends ApiTestCase
                 "password" => "tamere",
                 "avatar" => "des putes",
                 "bio" => "biographie",
-                "cars" => [ "api/cars/1"],
-                "opinions" => [ "api/opinions/1"],
-                "mail" => [ "api/mail/1"],
-                "notifications" => [ "api/notifications/1"],
-                "messages" => [ "api/messages/1"],
+                "cars" => [ "api/cars/" . $carId ],
+                "opinions" => [ "api/opinions/" . $opinionId],
+                "mail" => [ "api/mail/" . $mailId],
+                "notifications" => [ "api/notifications/" . $notifId],
+                "messages" => [ "api/messages/" . $messageId],
                 "receiverMessages" => [],
                 "driverTrips" => [ ],
                 "passengerTrips" => [ ],
