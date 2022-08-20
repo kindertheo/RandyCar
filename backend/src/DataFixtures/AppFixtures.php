@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
         //Car
         $carArray = [];
 
-        for($j=0; $j <= 30; $j++){
+        for($j=0; $j <= 80; $j++){
             $carEntity = new Car();
 
             $carEntity->setBrand( $faker->word( ))
@@ -86,7 +86,7 @@ class AppFixtures extends Fixture
         //Mail 
         $mailArray = [];
 
-        for($t=0; $t <= 10; $t++) { 
+        for($t=0; $t <= 150; $t++) { 
             $mailEntity = new Mail();
             $mailEntity->setReceiver($userArray[random_int(0, count($userArray)-1)])
                 ->setObject($faker->word())
@@ -100,7 +100,7 @@ class AppFixtures extends Fixture
         //City 
         $cityArray = [];
 
-        for($l =0; $l<=10; $l++) { 
+        for($l =0; $l<=50; $l++) { 
             $cityEntity = new City();
             $cityEntity->setPostalCode(str_replace(' ', '',$faker->postcode()))
                 ->setName($faker->city());
@@ -112,7 +112,7 @@ class AppFixtures extends Fixture
         //Address
         $addressArray = [];
 
-        for($k=0;$k<=20;$k++) { 
+        for($k=0;$k<=80;$k++) { 
             $addressEntity = new Address();
 
             $addressEntity->setNumber($faker->buildingNumber())
@@ -126,7 +126,7 @@ class AppFixtures extends Fixture
         //Messages 
         $messageArray = [];
 
-        for($m=0;$m<=20;$m++) { 
+        for($m=0;$m<=100;$m++) { 
             $messageEntity = new Messages();
             $messageEntity->setCreatedAt(\DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
                 ->setContent($faker->realText())
@@ -141,7 +141,7 @@ class AppFixtures extends Fixture
         // //Notifications 
         $notificationArray = [];
 
-        for($n = 0; $n<20; $n++) { 
+        for($n = 0; $n<100; $n++) { 
             $notificationEntity = new Notification();
 
             $notificationEntity
@@ -157,7 +157,7 @@ class AppFixtures extends Fixture
 
         //Opinions
         $opinionArray = [];
-        for($z=0;$z<20;$z++){
+        for($z=0;$z<200;$z++){
             $opinionEntity = new Opinion();
             $opinionEntity->setNotation($faker->biasedNumberBetween(0,5))
                 ->setMessage($faker->word())
@@ -171,7 +171,7 @@ class AppFixtures extends Fixture
 
         //Trips
         $tripArray = [];
-        for($t = 0 ; $t< 20; $t++) { 
+        for($t = 0 ; $t< 100; $t++) { 
             $tripEntity = new Trip();
             $tripEntity->setMaxPassenger($faker->biasedNumberBetween(1,5))
                 ->setDateStart($faker->dateTimeBetween('-200 days', 'now'))
