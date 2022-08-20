@@ -82,7 +82,7 @@ class UserTest extends ApiTestCase
              "password" => "tamere",
              "avatar" => "des putes",
              "bio" => "biographie",
-             "cars" => [ "api/cars/1"],
+             "cars" => ["api/cars/1"],
              "opinions" => [ "api/opinions/1"],
              "mail" => [ "api/mail/1"],
              "notifications" => [ "api/notifications/1"],
