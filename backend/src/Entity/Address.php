@@ -33,7 +33,7 @@ class Address
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="addresses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $city;
 

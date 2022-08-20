@@ -34,7 +34,7 @@ class City
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city")
      */
     private $addresses;
 

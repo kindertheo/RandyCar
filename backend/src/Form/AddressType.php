@@ -14,7 +14,7 @@ class AddressType extends AbstractType
         $builder
             ->add('number')
             ->add('street')
-            ->add('city_id')
+            ->add('city')
         ;
     }
 
