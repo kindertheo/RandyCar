@@ -43,7 +43,7 @@ class Trip
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="trips")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $driver;
 

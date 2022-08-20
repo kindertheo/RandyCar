@@ -36,13 +36,13 @@ class Opinion
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinions")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $emitter;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinions")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $receptor;
 
