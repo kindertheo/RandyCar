@@ -52,7 +52,7 @@ class Car
 
     /**
      * @ORM\ManyToOne(targetEntity=Fuel::class, inversedBy="cars")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $fuel;
 

@@ -5,6 +5,7 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Fuel;
 use App\Entity\Car;
+use App\Entity\City;
 use Doctrine\ORM\QueryBuilder;
 use App\Tests\Utils;
 
@@ -104,49 +105,31 @@ class FuelTest extends ApiTestCase
      // TEST DELETE 
      public function testDeleteFuel() 
      { 
-         $allId = $this->entityManager->getRepository(Fuel::class)->findAll();
-         $randomFuel = $allId[random_int(0, count($allId) -1 )];
-         $req = static::createClient()->request('DELETE', 'http://localhost/api/fuels/' . $randomFuel->getId());
-         
-         $countStart = count($randomFuel->getStartTrips());
-         $countEnd = count($randomFuel->getEndTrips());
- 
-         //var_dump($count);
-         if( $countStart == 0 && $countEnd == 0 ){
-             $this->assertResponseStatusCodeSame(204);
-         } else {
-             $this->assertResponseStatusCodeSame(500);
-         }
-     }
+        $randomIdFuel = Utils::getRandomIdByCollections(Fuel::class, $this->entityManager);
+
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/fuels/' . $randomIdFuel);
+        $this->assertResponseStatusCodeSame(204);
+    }
+
  
      // TEST PUT 
      public function testPutFuel() 
      { 
-         $allId = $this->entityManager->getRepository(Fuel::class)->findAll();
-         $randomFuel = $allId[random_int(0, count($allId) -1 )];
+        $randomIdCar = Utils::getRandomIdByCollections(Car::class, $this->entityManager);
+        $randomIdFuel = Utils::getRandomIdByCollections(Fuel::class, $this->entityManager);
  
-         $allIdCities = $this->entityManager->getRepository(City::class)->findAll();
-         $randomCity = $allIdCities[random_int(0, count($allIdCities) - 1 )];
- 
-         $allTrips = $this->entityManager->getRepository(Trip::class)->findAll();
-         $randomTrip = $allTrips[random_int(0, count($allTrips) -1)]; 
-         
- 
-         $req = static::createClient()->request('PUT', 'http://localhost/api/fuels/' . $randomFuel->getId(), [ 
+         $req = static::createClient()->request('PUT', 'http://localhost/api/fuels/' . $randomIdFuel, [ 
              'headers' => [ 
              'Content-Type' => 'application/json',
              'accept' => 'application/json'
          ],
          'body' => json_encode([
-             'number' => "6",
-             'street'=> "Rue de John Doe",
-             'city' => "api/cities/" .$randomCity->getId(),
-             'trips' => ["api/trips/" .$randomTrip->getId()]
+            'name' => "TestPut",
+            'consumption'=> 6.66,
+            'cars' => ["api/cars/". $randomIdCar],
          ])
          ] );
  
          $this->assertResponseIsSuccessful();
      }
- 
-
 }
