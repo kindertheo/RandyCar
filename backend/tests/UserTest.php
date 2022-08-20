@@ -89,7 +89,7 @@ class UserTest extends ApiTestCase
          $body = [
              "name"=> "Random",
              "surname" => "Dupont",
-             "email" => "connard@gmail.com",
+             "email" => "connard". uniqid() ."@gmail.com",
              "phone" => "3630",
              "password" => "tamere",
              "avatar" => "des putes",
@@ -156,7 +156,7 @@ class UserTest extends ApiTestCase
             'body' => json_encode([
                 "name"=> "Random",
                 "surname" => "Dupont",
-                "email" => "connard@gmail.com",
+                "email" => "connard" . uniqid() . "@gmail.com",
                 "phone" => "3630",
                 "password" => "tamere",
                 "avatar" => "des putes",
