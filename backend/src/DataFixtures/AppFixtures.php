@@ -15,9 +15,15 @@ use App\Entity\Messages;
 use App\Entity\Notification;
 use App\Entity\Opinion;
 use App\Entity\Trip;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class AppFixtures extends Fixture
 {
+    public function __construct(UserPasswordHasherInterface $passwordHasher){
+        $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -27,19 +33,48 @@ class AppFixtures extends Fixture
 
         //User
         $userArray = [];
+
+        $userAdminEntity = new User();
+
         
-        for($i=0; $i <= 50; $i++){
+        $plaintextPassword = 'superadminrandycar';
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userAdminEntity,
+            $plaintextPassword
+        );
+
+        $userAdminEntity->setName( 'Admin' )
+            ->setSurname( 'RandyStaff' )
+            ->setEmail( 'admin@randycar.fr' )
+            ->setPhone( '00000000' )
+            ->setPassword($hashedPassword)
+            ->setAvatar('')
+            ->setBio( 'Le staff RandyCar' )
+            ->setCreatedAt( \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
+            ->setTripCount(0)
+            ->setRoles(['ROLE_ADMIN']);
+
+        $manager->persist($userAdminEntity);
+        array_push($userArray, $userAdminEntity);
+
+        for($i=0; $i <= 10; $i++){
             $userEntity = new User();
 
             $phoneNumber = '0';
             $phoneNumber .= $faker->numberBetween(1,6);
             $phoneNumber .= $faker->regexify('[1-5]{6}');
-            // echo $phoneNumber;
+
+            $plaintextPassword = $faker->password();
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $userEntity,
+                $plaintextPassword
+            );
+
             $userEntity->setName( $faker->name() )
                 ->setSurname( $faker->lastName() )
                 ->setEmail( $faker->email() )
                 ->setPhone( $phoneNumber )
-                ->setPassword( $faker->password() )
+                ->setPassword( $hashedPassword )
                 ->setAvatar('')
                 ->setBio( $faker->sentence(20) )
                 ->setCreatedAt( \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
