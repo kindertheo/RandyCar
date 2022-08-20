@@ -32,7 +32,7 @@ class Fuel
     private $consumption;
 
     /**
-     * @ORM\OneToMany(targetEntity=Car::class, mappedBy="fuel_id")
+     * @ORM\OneToMany(targetEntity=Car::class, mappedBy="fuel")
      */
     private $cars;
 
