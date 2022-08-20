@@ -35,6 +35,8 @@ class CitiesTest extends ApiTestCase
 
         //get Object + index separate
         $index = $objectId->getId(); 
+        var_dump($index);
+        ob_flush();
         $this->assertIsNumeric($index);
 
         // use Index as slug
