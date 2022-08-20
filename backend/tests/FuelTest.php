@@ -30,7 +30,7 @@ class FuelTest extends ApiTestCase
     //GET
     public function testGetFuel()
     {
-        $req = static::createClient()->request('GET', 'http://localhost/api/fuel');
+        $req = static::createClient()->request('GET', 'http://localhost/api/fuels');
         $queryResult = $this->entityManager 
             ->getRepository(Fuel::class)
             ->count([]);
@@ -48,7 +48,7 @@ class FuelTest extends ApiTestCase
 
     public function testJsonFormat(): void 
     { 
-        $response = static::createClient()->request('GET', 'http://localhost/api/fuel');
+        $response = static::createClient()->request('GET', 'http://localhost/api/fuels');
 
         $this->assertMatchesResourceCollectionJsonSchema(Fuel::class);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
@@ -67,7 +67,7 @@ class FuelTest extends ApiTestCase
         $this->assertIsNumeric($index);
 
         // use Index as slug
-        $response = static::createClient()->request('GET', 'http://localhost/api/fuel/'. $index);
+        $response = static::createClient()->request('GET', 'http://localhost/api/fuels/'. $index);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
