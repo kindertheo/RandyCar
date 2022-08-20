@@ -33,13 +33,13 @@ class Messages
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ReceiverMessages")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $receiver;
 
