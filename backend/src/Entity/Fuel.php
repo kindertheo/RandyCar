@@ -82,7 +82,7 @@ class Fuel
     {
         if (!$this->cars->contains($car)) {
             $this->cars[] = $car;
-            $car->setFuelId($this);
+            $car->setFuel($this);
         }
 
         return $this;
@@ -92,8 +92,8 @@ class Fuel
     {
         if ($this->cars->removeElement($car)) {
             // set the owning side to null (unless already changed)
-            if ($car->getFuelId() === $this) {
-                $car->setFuelId(null);
+            if ($car->getFuel() === $this) {
+                $car->setFuel(null);
             }
         }
 
