@@ -43,13 +43,13 @@ class AppFixtures extends Fixture
             $plaintextPassword
         );
 
-        $userAdminEntity->setName( 'Admin' )
-            ->setSurname( 'RandyStaff' )
-            ->setEmail( 'admin@randycar.fr' )
-            ->setPhone( '00000000' )
+        $userAdminEntity->setName('Admin')
+            ->setSurname('RandyStaff')
+            ->setEmail('admin@randycar.fr')
+            ->setPhone('00000000')
             ->setPassword($hashedPassword)
             ->setAvatar('')
-            ->setBio( 'Le staff RandyCar' )
+            ->setBio('Le staff RandyCar')
             ->setCreatedAt( \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
             ->setTripCount(0)
             ->setRoles(['ROLE_ADMIN']);
