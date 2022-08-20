@@ -10,7 +10,15 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=FuelRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get" ={"access_control"="is_granted('VIEW')"},
+ *      "post" = {"access_control"="is_granted('CREATE')"},
+ *      "delete"={"access_control"="is_granted('DELETE')"},
+ *      "put" = {"access_control"="is_granted('EDIT')"},
+ *      "patch" = {"access_control"="is_granted('EDIT')"}
+ *  }
+ * )
  */
 class Fuel
 {
