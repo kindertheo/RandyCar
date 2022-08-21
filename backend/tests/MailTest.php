@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Tests;
+
 use App\Entity\Mail;
 use App\Entity\User;
+use Faker\Factory;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 
 class MailTest extends ApiTestCase
@@ -135,4 +137,28 @@ class MailTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    
+    public function testCreateMail(){
+        $faker = Factory::create('fr_FR');
+
+
+        $userArray = $this->entityManager->getRepository(User::class)->findAll();
+        $user = $userArray[random_int(0, count($userArray) -1 )];
+
+        $words = $faker->word();
+        $content = $faker->sentence(10);
+        $mailEntity = new Mail();
+        $mailEntity->setReceiver($user)
+            ->setObject($words)
+            ->setContent($content)
+            ->setSentDate(\DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ));
+
+        $this->entityManager->persist($mailEntity);
+        $this->entityManager->flush();
+
+        $mail = $this->entityManager->getRepository(Mail::class)->findOneBy(['object' => $words, 'content' => $content]);
+
+        $this->assertNotNull($mail);
+        
+    }
 }
