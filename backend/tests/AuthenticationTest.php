@@ -20,6 +20,7 @@ class AuthenticationTest extends ApiTestCase
         $client = self::createClient();
         $container = self::getContainer();
 
+        $generatedEmail = 'test'.  uniqid() .'@example.com';
         $user = new User();
         $user->setName('test')
         ->setSurname('test')
@@ -28,7 +29,7 @@ class AuthenticationTest extends ApiTestCase
         ->setBio('test')
         ->setCreatedAt( \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
         ->setTripCount(0)
-        ->setEmail('test'.  uniqid() .'@example.com')
+        ->setEmail($generatedEmail)
         ->setPassword(
             $container->get('security.user_password_hasher')->hashPassword($user, '$3CR3T')
         );
@@ -41,7 +42,7 @@ class AuthenticationTest extends ApiTestCase
         $response = $client->request('POST', '/authentication_token', [
             'headers' => ['Content-Type' => 'application/json'],
             'json' => [
-                'email' => 'test@example.com',
+                'email' => $generatedEmail,
                 'password' => '$3CR3T',
             ],
         ]);
@@ -62,13 +63,35 @@ class AuthenticationTest extends ApiTestCase
 
     public function testLoginAdmin(): void
     {
+        $faker = Factory::create('fr_FR');
+
         $client = self::createClient();
+        $container = self::getContainer();
+
+        $generatedEmail = 'testAdmin'.  uniqid() .'@example.com';
+        $user = new User();
+        $user->setName('testAdmin')
+        ->setSurname('testAdmin')
+        ->setPhone('00000000')
+        ->setAvatar('')
+        ->setBio('testAdmin')
+        ->setCreatedAt( \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") ))
+        ->setTripCount(0)
+        ->setEmail($generatedEmail)
+        ->setRoles(['ROLE_ADMIN'])
+        ->setPassword(
+            $container->get('security.user_password_hasher')->hashPassword($user, 'superadminrandycar')
+        );
+        
+        $manager = $container->get('doctrine')->getManager();
+        $manager->persist($user);
+        $manager->flush();
 
         // retrieve a token
         $response = $client->request('POST', '/authentication_token', [
             'headers' => ['Content-Type' => 'application/json'],
             'json' => [
-                'email' => 'admin@randycar.fr',
+                'email' => $generatedEmail,
                 'password' => 'superadminrandycar',
             ],
         ]);
@@ -81,7 +104,6 @@ class AuthenticationTest extends ApiTestCase
         $client->request('GET', '/admin');
         $this->assertResponseStatusCodeSame(401);
 
-        // test authorized
         $client->request('GET', '/admin', ['auth_bearer' => $json['token']]);
         $this->assertResponseIsSuccessful();
     }
