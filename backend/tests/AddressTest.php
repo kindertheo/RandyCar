@@ -9,6 +9,8 @@ use App\Entity\Trip;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\VarDumper\VarDumper;
+use App\Tests\Utils;
+
 
 class AddressTest extends ApiTestCase
 {
@@ -81,9 +83,7 @@ class AddressTest extends ApiTestCase
     // TEST POST
     public function testPostAddress() 
     { 
-        $allIdCities = $this->entityManager->getRepository(Address::class)->findAll();
-        $allIdCities = count($allIdCities);
-        $randomIdCities = random_int(1, 10);
+        $randomIdCities = Utils::getRandomIdByCollections(City::class, $this->entityManager);
         $req = static::createClient()->request('POST','http://localhost/api/addresses', [
             'headers' => [ 
                 'Content-Type' => 'application/json',
