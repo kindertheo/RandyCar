@@ -5,6 +5,7 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Address;
 use App\Entity\City;
+use App\Entity\User;
 use App\Entity\Trip;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -175,5 +176,134 @@ class AddressTest extends ApiTestCase
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
+
+
+
+    private function creatingAnAddress(bool $startTrip = True): array
+    {
+        //Get non-admin users
+        $allUsers = $this->entityManager->createQueryBuilder('u')
+        ->select('u')
+        ->from(User::class, 'u')
+        ->where('u.roles NOT LIKE :role')
+        ->setParameter('role', '%ROLE_ADMIN%')
+        ->getQuery()
+        ->getResult();
+        $randomUser = $allUsers[random_int(0, count($allUsers) -1 )];
+
+        //Create a new Trip to add to the Address
+        $newTrip = new Trip();
+        $newTrip->setMaxPassenger(3)
+            ->setDateStart(new \DateTime('now'))
+            ->setIsFinished(False)
+            ->setIsCancelled(False)
+            ->setDriver($randomUser);
+
+        //Merge and Persist Trip!
+        $tripEntity = $this->entityManager->merge($newTrip);
+        $this->entityManager->persist($tripEntity);
+
+        //Find a random City  to add to the Address
+        $allCities = $this->entityManager->getRepository(City::class)->findAll();
+        $randomCity = $allCities[random_int(0, count($allCities) -1 )];
+
+        //Merge and Persist City!
+        $cityEntity = $this->entityManager->merge($randomCity);
+        $this->entityManager->persist($randomCity);
+
+        //Creating the Address and flushing it
+        $address = new Address();
+        $address->setNumber('123456')
+            ->setStreet('StreetTest')
+            ->setCity($randomCity);
+
+        if($startTrip){
+            $address->addStartTrip($tripEntity);
+        }else{
+            $address->addEndTrip($tripEntity);
+        }
+        $this->entityManager->persist($address);
+        $this->entityManager->flush(); 
+        
+        return ['address' => $address, 'trip' => $tripEntity];
+    }
+
+    private function getTripsIds(Address $address, bool $startTrips = True): array
+    {
+        //Get the Address from the database
+        $address = $this->entityManager->getRepository(Address::class)->findOneBy(['id' => $address->getId()]);
+
+        //Put all trips id in an array
+        if($startTrips){
+            $trips = $address->getStartTrips();
+        }else{
+            $trips = $address->getEndTrips();
+        }
+        $tripsIds = [];
+        foreach($trips as $trip){
+            array_push($tripsIds, $trip->getId());
+        }
+
+        return $tripsIds; 
+    }
+
+    //UNIT TESTS
+    public function testAddStartTrips(){
+        //Get address and trip from upside
+        $entities = $this->creatingAnAddress(True);
+        $address = $entities['address'];
+        $tripEntity = $entities['trip'];
+
+
+        $tripsIds = $this->getTripsIds($address, True);
+        //Verify our freshly created trip's id is in it!
+        $this->assertContains($tripEntity->getId(), $tripsIds);
+    }
+
+    public function testRemoveStartTrips(){
+        //Get address and trip from upside
+        $entities = $this->creatingAnAddress(True);
+        $address = $entities['address'];
+        $tripEntity = $entities['trip'];
+
+        $address->removeStartTrip($tripEntity);
+        $this->entityManager->persist($address);
+        $this->entityManager->flush();
+
+        $tripsIds = $this->getTripsIds($address, True);
+
+        //Verify our freshly created trip's id is in it!
+        $this->assertNotContains($tripEntity->getId(), $tripsIds);
+    }
+
+    public function testAddEndTrips(){
+        //Get address and trip from upside
+        $entities = $this->creatingAnAddress(False);
+        $address = $entities['address'];
+        $tripEntity = $entities['trip'];
+
+        $tripsIds = $this->getTripsIds($address, False);
+
+        //Verify our freshly created trip's id is in it!
+        $this->assertContains($tripEntity->getId(), $tripsIds);
+    }
+
+    public function testRemoveEndTrips(){
+        //Get address and trip from upside
+        $entities = $this->creatingAnAddress(False);
+        $address = $entities['address'];
+        $tripEntity = $entities['trip'];
+
+        $address->removeEndTrip($tripEntity);
+        $this->entityManager->persist($address);
+        $this->entityManager->flush();
+
+        $tripsIds = $this->getTripsIds($address, False);
+
+        //Verify our freshly created trip's id is in it!
+        $this->assertNotContains($tripEntity->getId(), $tripsIds);
+    }
+    
+
 
 }
