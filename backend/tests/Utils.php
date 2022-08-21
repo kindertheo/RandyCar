@@ -78,4 +78,23 @@ class Utils extends ApiTestCase
         return $user;
     }
 
+
+    public static function request(string $method, string $url,  array $body = [], string $token = Null){
+        $headers = [ 
+            'Content-Type' => 'application/json',
+            'accept' => 'application/json',
+        ];
+        if($token){
+            $headers['Authorization'] = 'bearer ' . $token;
+        }
+
+        $req = static::createClient()->request($method, $url, [ 
+            'headers' => $headers,
+            'body' => json_encode($body)
+        ]);
+
+        return $req;
+    }
+
+
 }

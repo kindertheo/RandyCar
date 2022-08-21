@@ -43,14 +43,11 @@ class AddressTest extends ApiTestCase
         $this->entityManager = null;
     }
 
-
-    public function testCountAndSuccess(): void
+    private function assertCountAndSuccess($response, string $entity)
     {
-        $response = static::createClient()->request('GET', 'http://localhost/api/addresses');
-
         $queryResult = $this->entityManager
-            ->getRepository(Address::class)
-            ->count([]);
+        ->getRepository($entity)
+        ->count([]);
         
         $content = $response->getContent();
 
@@ -63,10 +60,25 @@ class AddressTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
+    public function testCountAndSuccess(): void
+    {
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses');
+        $this->assertResponseStatusCodeSame(401);
+
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses', ['auth_bearer' => $this->tokenUser]);
+        $this->assertCountAndSuccess($response, Address::class);
+
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses', ['auth_bearer' => $this->tokenAdmin]);
+        $this->assertCountAndSuccess($response, Address::class);
+    }
+
     public function testJsonFormat(): void 
     { 
-        $response = static::createClient()->request('GET', 'http://localhost/api/addresses');
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses', ['auth_bearer' => $this->tokenUser]);
+        $this->assertMatchesResourceCollectionJsonSchema(Address::class);
+        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
 
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses', ['auth_bearer' => $this->tokenAdmin]);
         $this->assertMatchesResourceCollectionJsonSchema(Address::class);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
@@ -83,9 +95,14 @@ class AddressTest extends ApiTestCase
         $index = $objectId->getId(); 
         $this->assertIsNumeric($index);
 
-        // use Index as slug
         $response = static::createClient()->request('GET', 'http://localhost/api/addresses/'. $index);
+        $this->assertResponseStatusCodeSame(401);
 
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses/'. $index, ['auth_bearer' => $this->tokenUser]);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+
+        $response = static::createClient()->request('GET', 'http://localhost/api/addresses/'. $index, ['auth_bearer' => $this->tokenAdmin]);
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
@@ -94,19 +111,19 @@ class AddressTest extends ApiTestCase
     public function testPostAddress() 
     { 
         $randomIdCities = Utils::getRandomIdByCollections(City::class, $this->entityManager);
-        $req = static::createClient()->request('POST','http://localhost/api/addresses', [
-            'headers' => [ 
-                'Content-Type' => 'application/json',
-                'accept' => 'application/json'
-            ],
-            'body' => json_encode([
-                'number' => "6",
-                'street'=> "Rue de John Doe",
-                'city' => "api/cities/". $randomIdCities,
-                'trips' => []
-            ])
-            ]
-        );        
+        $body = [
+            'number' => "6",
+            'street'=> "Rue de John Doe",
+            'city' => "api/cities/". $randomIdCities,
+            'trips' => []
+        ];
+        $req = Utils::request('POST', 'http://localhost/api/addresses',  $body);
+        $this->assertResponseStatusCodeSame(401);
+    
+        $req = Utils::request('POST', 'http://localhost/api/addresses',  $body, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
+
+        $req = Utils::request('POST', 'http://localhost/api/addresses',  $body, $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
@@ -116,8 +133,14 @@ class AddressTest extends ApiTestCase
     { 
         $allId = $this->entityManager->getRepository(Address::class)->findAll();
         $randomAddress = $allId[random_int(0, count($allId) -1 )];
+
         $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId());
-        
+        $this->assertResponseStatusCodeSame(401);
+
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId(), ['auth_bearer' => $this->tokenUser]);
+        $this->assertResponseStatusCodeSame(403);
+
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/addresses/' . $randomAddress->getId(), ['auth_bearer' => $this->tokenAdmin]);
         $countStart = count($randomAddress->getStartTrips());
         $countEnd = count($randomAddress->getEndTrips());
 
@@ -132,30 +155,25 @@ class AddressTest extends ApiTestCase
     // TEST PUT 
     public function testPutAddress() 
     { 
-        $allId = $this->entityManager->getRepository(Address::class)->findAll();
-        $randomAddress = $allId[random_int(0, count($allId) -1 )];
+        $randomAddress = Utils::getRandomIdByCollections(Address::class, $this->entityManager);
+        $randomCity = Utils::getRandomIdByCollections(City::class, $this->entityManager);
+        $randomTrip = Utils::getRandomIdByCollections(Trip::class, $this->entityManager);
 
-        $allIdCities = $this->entityManager->getRepository(City::class)->findAll();
-        $randomCity = $allIdCities[random_int(0, count($allIdCities) - 1 )];
-
-        $allTrips = $this->entityManager->getRepository(Trip::class)->findAll();
-        $randomTrip = $allTrips[random_int(0, count($allTrips) -1)]; 
-        
-
-        $req = static::createClient()->request('PUT', 'http://localhost/api/addresses/' . $randomAddress->getId(), [ 
-            'headers' => [ 
-            'Content-Type' => 'application/json',
-            'accept' => 'application/json'
-        ],
-        'body' => json_encode([
+        $body = [
             'number' => "6",
             'street'=> "Rue de John Doe",
-            'city' => "api/cities/" .$randomCity->getId(),
-            'trips' => ["api/trips/" .$randomTrip->getId()]
-        ])
-        ] );
+            'city' => "api/cities/" .$randomCity,
+            'trips' => ["api/trips/" .$randomTrip]
+        ];
+        $req = Utils::request('PUT', 'http://localhost/api/addresses/' . $randomAddress,  $body);
+        $this->assertResponseStatusCodeSame(401);
 
+        $req = Utils::request('PUT', 'http://localhost/api/addresses/' . $randomAddress,  $body, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
+
+        $req = Utils::request('PUT', 'http://localhost/api/addresses/' . $randomAddress,  $body, $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
 }
