@@ -53,7 +53,7 @@ class MailTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
-    public function getMail() 
+    public function testGetMail() 
     {
         $req = static::createClient()->request('GET', 'http://localhost/api/mails');
         $queryResult = $this->entityManager 
@@ -90,20 +90,20 @@ class MailTest extends ApiTestCase
     }
 
     //post 
-    public function postMail()
+    public function testPostMail()
     {
 
         $randomReceiver = $this->entityManager->getRepository(User::class)->findAll();
         $randomReceiver = $randomReceiver[random_int(0, count($randomReceiver)-1 )];
 
         $body = [ 
-            "receiver"=> $randomReceiver->getId(),
+            "receiver"=> "api/users/". $randomReceiver->getId(),
             "object"=> "Lorem Ipsum Dolor sit amet",
             "content"=> "This is a lorem ipsum content. If you see this that mean post testing is working correctly on this project",
             "sentDate"=> "2022-08-16T08:22:46.806Z"
         ];
 
-        $req = static::createClient()->request('POST', 'http://localhost/api/mails/', [ 
+        $req = static::createClient()->request('POST', 'http://localhost/api/mails', [ 
             'headers' => [ 
                 'Content-Type' => 'application/json',
                 'accept' => 'application/json'
@@ -116,17 +116,31 @@ class MailTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
-    public function putMail()
+    public function testPutMail()
     { 
+        $randomMail = $this->entityManager->getRepository(Mail::class)->findAll();
+        $randomMail = $randomMail[random_int(0, count($randomMail)-1 )];
+
         $randomReceiver = $this->entityManager->getRepository(User::class)->findAll();
-        $randomReceiver = $randomReceiver[0];
+        $randomReceiver = $randomReceiver[random_int(0, count($randomReceiver)-1 )];
 
         $body = [ 
-            "receiver"=> $randomReceiver->getId(),
+            "receiver"=> "api/users/". $randomReceiver->getId(),
             "object"=> "Put edition",
             "content"=> "This is a lorem ipsum content. If you see this that mean post testing is working correctly on this project",
             "sentDate"=> "2022-08-16T08:22:46.806Z"
         ];
+
+        $req = static::createClient()->request('PUT', 'http://localhost/api/mails/' . $randomMail->getId() , [ 
+            'headers' => [ 
+                'Content-Type' => 'application/json',
+                'accept' => 'application/json'
+            ],
+            'body' => json_encode($body)
+            ]
+        );
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
     public function testDeleteMail() 
