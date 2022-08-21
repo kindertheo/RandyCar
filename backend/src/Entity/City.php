@@ -45,7 +45,7 @@ class City
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city")
+     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city", cascade={"persist"})
      */
     private $addresses;
 

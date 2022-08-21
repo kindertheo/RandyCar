@@ -43,7 +43,7 @@ class Address
     private $street;
 
     /**
-     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="addresses")
+     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="addresses", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $city;
