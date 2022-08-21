@@ -125,8 +125,15 @@ class FuelTest extends ApiTestCase
         $this->assertIsNumeric($index);
 
         // use Index as slug
-        $response = static::createClient()->request('GET', 'http://localhost/api/fuels/'. $index, ['auth_bearer' => $this->tokenUser]);
+        $response = static::createClient()->request('GET', 'http://localhost/api/fuels/'. $index);
+        $this->assertResponseStatusCodeSame(401);
 
+        $response = static::createClient()->request('GET', 'http://localhost/api/fuels/'. $index, ['auth_bearer' => $this->tokenUser]);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+
+
+        $response = static::createClient()->request('GET', 'http://localhost/api/fuels/'. $index, ['auth_bearer' => $this->tokenAdmin]);
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
