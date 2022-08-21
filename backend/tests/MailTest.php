@@ -160,5 +160,6 @@ class MailTest extends ApiTestCase
 
         $this->assertNotNull($mail);
         
+        
     }
 }
