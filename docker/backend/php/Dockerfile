@@ -22,8 +22,9 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
             pdo pdo_mysql opcache intl zip calendar dom mbstring gd xsl \
 \
     &&  pecl install apcu && docker-php-ext-enable apcu \
-    &&  pecl install xdebug-2.8.1 && docker-php-ext-enable xdebug 
+    &&  pecl install xdebug-2.8.1 && docker-php-ext-enable xdebug \
 
+    &&  a2enmod rewrite
 WORKDIR /var/www/backend
 
 COPY composer.json .
