@@ -10,7 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AddressRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+*     "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *  }
+ * )
  */
 class Address
 {
