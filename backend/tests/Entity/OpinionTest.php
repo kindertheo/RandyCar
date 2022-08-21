@@ -5,6 +5,8 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Opinion;
 use App\Entity\User;
+use Faker\Factory;
+
 
 class OpinionTest extends ApiTestCase
 {
@@ -108,7 +110,7 @@ class OpinionTest extends ApiTestCase
     }
 
     // post 
-    public function postOpinion() { 
+    public function testPostOpinion() { 
 
         $randomEmitter = $this->entityManager->getRepository(User::class)->findAll();
         $randomEmitter = $randomEmitter[random_int(0, count($randomEmitter)-1)];
@@ -118,12 +120,12 @@ class OpinionTest extends ApiTestCase
         $body = [ 
             "notation"=> 2,
             "message"=> "hello world",
-            "emitter"=> $randomEmitter->getId(),
-            "receptor"=> $randomReceptor->getId(),
+            "emitter"=> "api/users/" . $randomEmitter->getId(),
+            "receptor"=> "api/users/" . $randomReceptor->getId(),
             "createdAt"=> "2022-08-16T08:22:46.806Z"
         ];
 
-        $req = static::createClient()->request('POST','http://localhost/api/users', [
+        $req = static::createClient()->request('POST','http://localhost/api/opinions', [
             'headers' => [ 
                 'Content-Type' => 'application/json',
                 'accept' => 'application/json'
@@ -134,5 +136,38 @@ class OpinionTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
+    }
+
+
+    private $notation;
+    private $message;
+    private $created_at;
+    private $emitter;
+    private $receptor;
+
+    public function testCreateOpinion(){
+
+        $faker = Factory::create('fr_FR');
+
+        $randomEmitter = $this->entityManager->getRepository(User::class)->findAll();
+        $randomEmitter = $randomEmitter[random_int(0, count($randomEmitter)-1)];
+        $randomReceptor = $this->entityManager->getRepository(User::class)->findAll();
+        $randomReceptor = $randomReceptor[random_int(0, count($randomReceptor)-1)];
+
+        $content = $faker->sentence(10);
+
+        $opinionEntity = new Opinion();
+        $opinionEntity->setEmitter($randomEmitter)
+            ->setReceptor($randomReceptor)
+            ->setMessage($content)
+            ->setCreatedAt(new \DateTime('now'))
+            ->setNotation(random_int(1,5));
+
+        $this->entityManager->persist($opinionEntity);
+        $this->entityManager->flush();
+
+        $opinion = $this->entityManager->getRepository(Opinion::class)->findOneBy(['message' => $content]);
+
+        $this->assertNotNull($opinion);
     }
 }
