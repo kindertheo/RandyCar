@@ -19,8 +19,8 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="entity">
+            <directory>tests/Entity</directory>
         </testsuite>
     </testsuites>
 
@@ -28,6 +28,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">src/DataFixtures</directory>
+        </exclude>
     </coverage>
 
     <listeners>
