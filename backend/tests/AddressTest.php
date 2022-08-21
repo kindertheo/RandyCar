@@ -23,11 +23,21 @@ class AddressTest extends ApiTestCase
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
+
+        
+        $this->admin = Utils::createUser(True);
+        $this->user = Utils::createUser(False);
+
+        $this->tokenAdmin = Utils::getToken($this->admin);
+        $this->tokenUser = Utils::getToken($this->user);
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
+
+        Utils::deleteUser($this->admin, $this->entityManager);
+        Utils::deleteUser($this->user, $this->entityManager);
 
         $this->entityManager->close();
         $this->entityManager = null;
