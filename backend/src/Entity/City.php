@@ -11,7 +11,18 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
- * @ApiResource(iri="http://schema.org/name")
+ * @ApiResource(iri="http://schema.org/name",
+ * itemOperations={
+ *      "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+ *    "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *  }
+ * )
  */
 class City
 {
@@ -34,7 +45,7 @@ class City
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city")
+     * @ORM\OneToMany(targetEntity=Address::class, mappedBy="city", cascade={"persist"})
      */
     private $addresses;
 

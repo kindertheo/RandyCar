@@ -12,11 +12,14 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ORM\Entity(repositoryClass=FuelRepository::class)
  * @ApiResource(
  *  itemOperations={
- *      "get" ={"access_control"="is_granted('VIEW')"},
- *      "post" = {"access_control"="is_granted('CREATE')"},
- *      "delete"={"access_control"="is_granted('DELETE')"},
- *      "put" = {"access_control"="is_granted('EDIT')"},
- *      "patch" = {"access_control"="is_granted('EDIT')"}
+ *      "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+*     "get" ={"access_control"="is_granted('ROLE_USER')"},
  *  }
  * )
  */

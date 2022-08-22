@@ -29,6 +29,7 @@ class FuelVoter extends Voter
             return false;
         }
         var_dump($subject);
+        ob_flush();
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::EDIT:
