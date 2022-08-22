@@ -124,3 +124,4 @@ e2e/*.map
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/symfony,angular,visualstudiocode
+backend/code_coverage/*

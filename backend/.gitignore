@@ -7,6 +7,11 @@
 /public/bundles/
 /var/
 /vendor/
+
+coverage_test/*
+code_coverage/*
+code_test/*
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
