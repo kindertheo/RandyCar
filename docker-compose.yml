@@ -44,6 +44,8 @@ services:
             - ./docker/backend/vhosts:/etc/apache2/sites-enabled
             - /var/www/vendor
             - ./backend:/var/www/backend
+        environment:
+            FRONT_URL: 'angular_docker_container:4200'
         restart: always
         networks:
             - dev
@@ -56,6 +58,8 @@ services:
         volumes:
             - ./frontend:/var/www/frontend
             - /var/www/frontend/node_modules
+        environment:
+            API_URL: 'www_docker_symfony:80/api'
         restart: always
         depends_on:
             - www

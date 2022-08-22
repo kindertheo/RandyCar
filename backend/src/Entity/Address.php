@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AddressRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AddressRepository::class)
+ * @ApiResource
  */
 class Address
 {
@@ -33,7 +35,7 @@ class Address
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="addresses")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $city_id;
+    private $city;
 
     /**
      * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="start_address")
@@ -74,14 +76,14 @@ class Address
         return $this;
     }
 
-    public function getCityId(): ?City
+    public function getCity(): ?City
     {
-        return $this->city_id;
+        return $this->city;
     }
 
-    public function setCityId(?City $city_id): self
+    public function setCity(?City $city): self
     {
-        $this->city_id = $city_id;
+        $this->city = $city;
 
         return $this;
     }

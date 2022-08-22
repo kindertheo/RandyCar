@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=NotificationRepository::class)
+ * @ApiResource
  */
 class Notification
 {
@@ -41,7 +43,7 @@ class Notification
     /**
      * @ORM\Column(type="boolean")
      */
-    private $read;
+    private $readed;
 
     public function getId(): ?int
     {
@@ -96,20 +98,20 @@ class Notification
         return $this;
     }
 
-    public function getRead(): ?bool
+    public function getReaded(): ?bool
     {
-        return $this->read;
+        return $this->readed;
     }
 
-    public function setRead(bool $read): self
+    public function setReaded(bool $readed): self
     {
-        $this->read = $read;
+        $this->readed = $readed;
 
         return $this;
     }
 
-    public function isRead(): ?bool
+    public function isReaded(): ?bool
     {
-        return $this->read;
+        return $this->readed;
     }
 }

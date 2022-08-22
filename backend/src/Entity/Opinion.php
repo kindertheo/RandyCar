@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\OpinionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=OpinionRepository::class)
+ * @ApiResource
  */
 class Opinion
 {

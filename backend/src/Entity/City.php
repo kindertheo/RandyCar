@@ -6,9 +6,11 @@ use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
+ * @ApiResource
  */
 class City
 {
@@ -80,7 +82,7 @@ class City
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
-            $address->setCityId($this);
+            $address->setCity($this);
         }
 
         return $this;
@@ -90,8 +92,8 @@ class City
     {
         if ($this->addresses->removeElement($address)) {
             // set the owning side to null (unless already changed)
-            if ($address->getCityId() === $this) {
-                $address->setCityId(null);
+            if ($address->getCity() === $this) {
+                $address->setCity(null);
             }
         }
 

@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\MailRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MailRepository::class)
+ * @ApiResource
  */
 class Mail
 {
