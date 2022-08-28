@@ -150,8 +150,10 @@ class NotificationTest extends ApiTestCase
     public function testDeleteNotification() 
     { 
         $allId = $this->entityManager->getRepository(Notification::class)->findAll();
-        $randomOpinion = $allId[random_int(0, count($allId) -1 )];
-        $req = static::createClient()->request('DELETE', 'http://localhost/api/notifications/' . $randomOpinion->getId());
+        $randomNotification = $allId[random_int(0, count($allId) -1 )];
+        // $notification->isReaded();
+        $this->assertIsBool($randomNotification->isReaded());
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/notifications/' . $randomNotification->getId());
         $this->assertResponseIsSuccessful();
     }
 
@@ -178,4 +180,5 @@ class NotificationTest extends ApiTestCase
 
         $this->assertNotNull($notification);
     }
+
 }
