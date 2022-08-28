@@ -8,7 +8,27 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=OpinionRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get" ={
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER')",
+ *      },
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={
+ *      "access_control"="is_granted('ROLE_ADMIN')",
+ *      "access_control"="is_granted('ROLE_USER')",
+ *      },
+*     "get" ={
+*              "access_control"="is_granted('ROLE_ADMIN')",
+*              "access_control"="is_granted('ROLE_USER')",
+*       },
+ *  }
+ * )
  */
 class Opinion
 {
@@ -45,6 +65,11 @@ class Opinion
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $receptor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Trip::class, inversedBy="opinions")
+     */
+    private $trip;
 
     public function getId(): ?int
     {
@@ -107,6 +132,18 @@ class Opinion
     public function setReceptor(?User $receptor): self
     {
         $this->receptor = $receptor;
+
+        return $this;
+    }
+
+    public function getTrip(): ?Trip
+    {
+        return $this->trip;
+    }
+
+    public function setTrip(?Trip $trip): self
+    {
+        $this->trip = $trip;
 
         return $this;
     }
