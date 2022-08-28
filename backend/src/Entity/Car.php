@@ -6,9 +6,29 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
+// ROLE_USER can only DELETE if its his car
+// ROLE_USER can only PUT if its his car
+// TODO Add ROLE_ADMIN to delete
+// TODO Create tests
+
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get"={"access_control"="is_granted('ROLE_USER')"},
+ *      "delete"={
+ *              "access_control"="is_granted('ROLE_USER') and object.getOwner() == user",
+ *              "access_control"="is_granted('ROLE_ADMIN')"        
+ *      },
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "get"={"access_control"="is_granted('ROLE_USER')"},
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+ *  }
+ * )
  */
 class Car
 {

@@ -6,6 +6,10 @@ use App\Repository\OpinionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
+
+//  "access_control"="is_granted('ROLE_USER') and in_array(object.getTrip(), user.getAllTrips())",
+//TODO Create a voter for this entity
+
 /**
  * @ORM\Entity(repositoryClass=OpinionRepository::class)
  * @ApiResource(
@@ -23,10 +27,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *      "access_control"="is_granted('ROLE_ADMIN')",
  *      "access_control"="is_granted('ROLE_USER')",
  *      },
-*     "get" ={
-*              "access_control"="is_granted('ROLE_ADMIN')",
-*              "access_control"="is_granted('ROLE_USER')",
-*       },
+ *    "get" ={
+ *             "access_control"="is_granted('ROLE_ADMIN')",
+ *             "access_control"="is_granted('ROLE_USER')",
+ *      },
  *  }
  * )
  */

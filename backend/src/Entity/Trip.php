@@ -10,7 +10,27 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=TripRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * itemOperations={
+ *      "get" = { "access_control"="is_granted('ROLE_USER')" },
+ *      "delete"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *      "put" = {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *      "patch"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *  },
+ *  collectionOperations={
+ *    "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *    "post" ={"access_control"="is_granted('ROLE_USER')"},
+ *  }
+ * )
  */
 class Trip
 {

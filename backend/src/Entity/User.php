@@ -14,7 +14,27 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="`user`")
- * @ApiResource
+ * @ApiResource(
+ * itemOperations={
+ *      "get" = { "access_control"="is_granted('ROLE_USER')" },
+ *      "delete"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object == user",
+ *      },
+ *      "put" = {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object == user",
+ *      },
+ *      "patch"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object == user",
+ *      },
+ *  },
+ *  collectionOperations={
+ *    "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *    "post" ={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *  }
+ * )
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -143,7 +163,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getAllTrips(): Collection
     {
-        return array_merge($this->getDriverTrips(), $this->getPassengerTrips())
+        return array_merge($this->getDriverTrips(), $this->getPassengerTrips());
     }
 
     public function getId(): ?int

@@ -12,14 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  * @ApiResource(
  *  itemOperations={
- *      "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *      "get"={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
  *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
  *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
  *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
  *  },
  *  collectionOperations={
+ *    "get"={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
  *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
-*     "get" ={"access_control"="is_granted('ROLE_USER')"},
  *  }
  * )
  */
