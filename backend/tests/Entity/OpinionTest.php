@@ -138,13 +138,6 @@ class OpinionTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
-
-    private $notation;
-    private $message;
-    private $created_at;
-    private $emitter;
-    private $receptor;
-
     public function testCreateOpinion(){
 
         $faker = Factory::create('fr_FR');

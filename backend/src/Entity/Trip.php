@@ -10,7 +10,27 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=TripRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * itemOperations={
+ *      "get" = { "access_control"="is_granted('ROLE_USER')" },
+ *      "delete"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *      "put" = {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *      "patch"= {
+ *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_USER') and object.getDriver() == user",
+ *      },
+ *  },
+ *  collectionOperations={
+ *    "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *    "post" ={"access_control"="is_granted('ROLE_USER')"},
+ *  }
+ * )
  */
 class Trip
 {
@@ -64,9 +84,15 @@ class Trip
      */
     private $passenger;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="trip")
+     */
+    private $opinions;
+
     public function __construct()
     {
         $this->passenger = new ArrayCollection();
+        $this->opinions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,5 +216,35 @@ class Trip
     public function isCancelled(): ?bool
     {
         return $this->cancelled;
+    }
+
+    /**
+     * @return Collection<int, Opinion>
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinion $opinion): self
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions[] = $opinion;
+            $opinion->setTrip($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinion $opinion): self
+    {
+        if ($this->opinions->removeElement($opinion)) {
+            // set the owning side to null (unless already changed)
+            if ($opinion->getTrip() === $this) {
+                $opinion->setTrip(null);
+            }
+        }
+
+        return $this;
     }
 }

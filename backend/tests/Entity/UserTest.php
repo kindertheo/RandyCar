@@ -87,24 +87,24 @@ class UserTest extends ApiTestCase
         $messageId = $this->getRandomIdByCollections(Messages::class);
 
          $body = [
-             "name"=> "Random",
-             "surname" => "Dupont",
-             "email" => "connard". uniqid() ."@gmail.com",
-             "phone" => "3630",
-             "password" => "tamere",
-             "avatar" => "des putes",
-             "bio" => "biographie",
-            "cars" => [ "api/cars/" . $carId ],
-            "opinions" => [ "api/opinions/" . $opinionId],
-            "mail" => [ "api/mail/" . $mailId],
-            "notifications" => [ "api/notifications/" . $notifId],
-            "messages" => [ "api/messages/" . $messageId],
-             "receiverMessages" => [],
-             "driverTrips" => [ ],
-             "passengerTrips" => [ ],
-             //"tripCount" => 0,
-             "trips" => []
-         ];
+                "name"=> "Random",
+                "surname" => "Dupont",
+                "email" => "connard". uniqid() ."@gmail.com",
+                "phone" => "3630",
+                "password" => "tamere",
+                "avatar" => "des putes",
+                "bio" => "biographie",
+                "cars" => [ "api/cars/" . $carId ],
+                "opinions" => [ "api/opinions/" . $opinionId],
+                "mail" => [ "api/mail/" . $mailId],
+                "notifications" => [ "api/notifications/" . $notifId],
+                "messages" => [ "api/messages/" . $messageId],
+                "receiverMessages" => [],
+                "driverTrips" => [ ],
+                "passengerTrips" => [ ],
+                //"tripCount" => 0,
+                "trips" => []
+            ];
 
          $req = static::createClient()->request('POST','http://localhost/api/users', [
              'headers' => [ 
