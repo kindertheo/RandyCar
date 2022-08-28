@@ -137,6 +137,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->setTripCount(0);
     }
 
+    
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getAllTrips(): Collection
+    {
+        return array_merge($this->getDriverTrips(), $this->getPassengerTrips())
+    }
+
     public function getId(): ?int
     {
         return $this->id;
