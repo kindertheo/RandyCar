@@ -18,11 +18,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * itemOperations={
  *      "get" = { "access_control"="is_granted('ROLE_USER')" },
  *      "delete"= {
- *              "access_control"="is_granted('ROLE_ADMIN')",
+ *              "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object == user",
  *      },
  *      "put" = {
- *              "access_control"="is_granted('ROLE_ADMIN')",
- *              "access_control"="is_granted('ROLE_USER') and object == user",
+ *              "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object == user",
  *      },
  *      "patch"= {
  *              "access_control"="is_granted('ROLE_ADMIN')",
@@ -31,7 +30,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *  },
  *  collectionOperations={
  *    "get" ={"access_control"="is_granted('ROLE_USER')"},
- *    "post" ={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY'),"},    
+ *    "post" ={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},    
  *  }
  * )
  */
@@ -160,9 +159,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Trip>
      */
-    public function getAllTrips(): Collection
+    public function getAllTrips()
     {
-        return array_merge($this->getDriverTrips(), $this->getPassengerTrips());
+        // return array_merge($this->getDriverTrips(), $this->getPassengerTrips());
+        return [];
     }
 
     public function getId(): ?int
