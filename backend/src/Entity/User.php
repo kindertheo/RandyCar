@@ -19,7 +19,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *      "get" = { "access_control"="is_granted('ROLE_USER')" },
  *      "delete"= {
  *              "access_control"="is_granted('ROLE_ADMIN')",
- *              "access_control"="is_granted('ROLE_USER') and object == user",
  *      },
  *      "put" = {
  *              "access_control"="is_granted('ROLE_ADMIN')",
@@ -32,7 +31,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *  },
  *  collectionOperations={
  *    "get" ={"access_control"="is_granted('ROLE_USER')"},
- *    "post" ={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *    "post" ={"access_control"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY'),"},    
  *  }
  * )
  */

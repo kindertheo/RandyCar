@@ -8,6 +8,7 @@ use App\Entity\Messages;
 use App\Entity\Notification;
 use App\Entity\Opinion;
 use App\Entity\Car;
+use App\Tests\Utils;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 
 class UserTest extends ApiTestCase
@@ -19,6 +20,12 @@ class UserTest extends ApiTestCase
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
+
+        $this->admin = Utils::createUser(True);
+        $this->user = Utils::createUser(False);
+
+        $this->tokenAdmin = Utils::getToken($this->admin);
+        $this->tokenUser = Utils::getToken($this->user);
     }
 
     protected function tearDown(): void
@@ -31,7 +38,7 @@ class UserTest extends ApiTestCase
 
     public function testCountAndSuccess(): void
     {
-        $response = static::createClient()->request('GET', 'http://localhost/api/users');
+        $response = static::createClient()->request('GET', 'http://localhost/api/users', [ 'auth_bearer' => $this->tokenUser]);
 
         $queryResult = $this->entityManager
             ->getRepository(User::class)
@@ -51,9 +58,7 @@ class UserTest extends ApiTestCase
     
     public function testJsonFormat(): void 
     { 
-        $response = static::createClient()->request('GET', 'http://localhost/api/users');
-
-        $this->assertMatchesResourceCollectionJsonSchema(User::class);
+        $response = static::createClient()->request('GET', 'http://localhost/api/users', ["auth_bearer" => $this->tokenUser]);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
@@ -123,9 +128,16 @@ class UserTest extends ApiTestCase
     public function testDeleteUser() 
     { 
         $allUsers = $this->entityManager->getRepository(User::class)->findAll();
-        $randomUser = $allUsers[random_int(0, count($allUsers) -1 )];
-        $req = static::createClient()->request('DELETE', 'http://localhost/api/users/' . $randomUser->getId());
-        $this->assertResponseIsSuccessful();
+
+        $randomId = Utils::getRandomIdByCollections(User::class, $this->entityManager);
+
+        $req = Utils::request("DELETE", 'http://localhost/api/users/' . $randomId, [], $this->tokenUser);
+        // $this->assertJsonContains(array("hydra:description" => "Access Denied."));
+        $this->assertResponseStatusCodeSame(403);
+
+        $req = Utils::request("DELETE", 'http://localhost/api/users/'. $randomId, [], $this->tokenAdmin);
+        $this->assertResponseIsSuccessful(204);
+        // method not allowed ? 
     }
 
     private function getRandomIdByCollections($class)
