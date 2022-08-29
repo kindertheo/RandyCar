@@ -164,18 +164,11 @@ class UserTest extends ApiTestCase
             "receiverMessages" => [],
             "driverTrips" => [ ],
             "passengerTrips" => [ ],
-            //"tripCount" => 0,
             "trips" => []
         ];
         
         $randomUser = Utils::request("PUT", 'http://localhost/api/users/' . $this->user->getId(), $body, $this->tokenUser);
-        
-
-        $carId = $this->getRandomIdByCollections(Car::class);
-        $opinionId = $this->getRandomIdByCollections(Opinion::class);
-        $mailId = $this->getRandomIdByCollections(Mail::class);
-        $notifId = $this->getRandomIdByCollections(Notification::class);
-        $messageId = $this->getRandomIdByCollections(Messages::class);
-        $this->assertResponseIsSuccessful(302);
+    
+        $this->assertResponseIsSuccessful();
     } 
 }
