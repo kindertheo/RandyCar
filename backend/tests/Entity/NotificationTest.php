@@ -15,7 +15,13 @@ class NotificationTest extends ApiTestCase
 
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
-            ->getManager();            
+            ->getManager();
+            
+        $this->admin = Utils::createUser(True);
+        $this->user = Utils::createUser(False);
+    
+        $this->tokenAdmin = Utils::getToken($this->admin);
+        $this->tokenUser = Utils::getToken($this->user);
     }
 
     protected function tearDown(): void
@@ -28,7 +34,7 @@ class NotificationTest extends ApiTestCase
 
     public function testCountAndSuccess(): void
     {
-        $response = static::createClient()->request('GET', 'http://localhost/api/notifications');
+        $response = static::createClient()->request('GET', 'http://localhost/api/notifications', ['auth_bearer' => $this->tokenUser]);
 
         $queryResult = $this->entityManager
             ->getRepository(Notification::class)

@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Entity\Car;
 use App\Entity\User;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use App\Tests\Utils;
 
 class CarTest extends ApiTestCase
 {
@@ -16,7 +17,11 @@ class CarTest extends ApiTestCase
             ->get('doctrine')
             ->getManager();
 
-            
+            $this->admin = Utils::createUser(True);
+            $this->user = Utils::createUser(False);
+    
+            $this->tokenAdmin = Utils::getToken($this->admin);
+            $this->tokenUser = Utils::getToken($this->user);
     }
 
     protected function tearDown(): void
@@ -29,65 +34,57 @@ class CarTest extends ApiTestCase
 
     //GET
     public function testGetCar()
-    {
-        $req = static::createClient()->request('GET', 'http://localhost/api/cars');
-        $queryResult = $this->entityManager 
-            ->getRepository(Car::class)
-            ->count([]);
+    {   
+        $req = Utils::request("GET", 'http://localhost/api/cars', []);
+        $this->assertResponseStatusCodeSame(401);
 
-        $content = $req->getContent();
-
-        $count = json_decode($content, true);
-        $count = $count['hydra:totalItems'];
-
-        $this->assertEquals($count, $queryResult);
-
+        $req = Utils::request("GET", 'http://localhost/api/cars', [], $this->tokenUser);
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+        
+        $req = Utils::request("GET", 'http://localhost/api/cars', [], $this->tokenAdmin);
+        $this->assertResponseIsSuccessful();
     }
 
 
     //get{id}
     public function testGetById()
     {
-        // findAll
-        $id = $this->entityManager->getRepository(Car::class)->findAll();
-        $objectId = $id[0];
-        $this->assertIsObject($objectId); 
+        $randomCar = Utils::getRandomIdByCollections(Car::class, $this->entityManager);
 
-        //get Object + index separate
-        $index = $objectId->getId(); 
-        $this->assertIsNumeric($index);
+        $req = Utils::request("GET", 'http://localhost/api/cars/' . $randomCar, []);
+        $this->assertResponseStatusCodeSame(401);
 
-        // use Index as slug
-        $response = static::createClient()->request('GET', 'http://localhost/api/cars/'. $index);
+        $req = Utils::request("GET", 'http://localhost/api/cars/' . $randomCar, [], $this->tokenUser);
+        $this->assertResponseIsSuccessful();
+        
+        $req = Utils::request("GET", 'http://localhost/api/cars/' . $randomCar, [], $this->tokenAdmin);
+        $this->assertResponseIsSuccessful();
 
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
     //Put 
     public function testPutCar() 
     {         
 
-        $carCollection = $this->entityManager->getRepository(Car::class)->findAll();
-        $carRandom = $carCollection[0]->getId();  
+        $randomCar = Utils::getRandomIdByCollections(Car::class, $this->entityManager);
 
         $body = [ 
             "brand" => "testBrand",
             "model" => "modelTest",
             "color" => "colorTest",
-            "seatNumber" => random_int(0, count($carCollection)-1),
+            "seatNumber" => random_int(0, 5),
             "licensePlate" => "TEST1234"
         ];
 
-        $req = static::createClient()->request('PUT', 'http://localhost/api/cars/'. $carRandom, [ 
-            'headers' => [ 
-                'Content-Type' => 'application/ld+json',
-                'accept' => 'application/json'
-            ],
-            'body' => json_encode($body)
-        ]);
+        $req = Utils::request("PUT", "http://localhost/api/cars/" . $randomCar, $body);
+        $this->assertResponseStatusCodeSame(401);
+
+        $req = Utils::request("PUT", "http://localhost/api/cars/" . $randomCar, $body, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
+
+        $req = Utils::request("PUT", "http://localhost/api/cars/" . $randomCar, $body, $this->tokenAdmin);
+        $this->assertResponseIsSuccessful();
 
         $this->assertResponseIsSuccessful();
     }

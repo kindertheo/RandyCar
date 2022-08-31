@@ -15,7 +15,13 @@ class MailTest extends ApiTestCase
 
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
-            ->getManager();            
+            ->getManager();        
+            
+        $this->admin = Utils::createUser(True);
+        $this->user = Utils::createUser(False);
+    
+        $this->tokenAdmin = Utils::getToken($this->admin);
+        $this->tokenUser = Utils::getToken($this->user);
     }
 
     protected function tearDown(): void
@@ -26,49 +32,23 @@ class MailTest extends ApiTestCase
         $this->entityManager = null;
     }
 
-    public function testCountAndSuccess(): void
+    // testJson 
+    public function testJsonFormat(): void
     {
-        $response = static::createClient()->request('GET', 'http://localhost/api/mails');
-
-        $queryResult = $this->entityManager
-            ->getRepository(Mail::class)
-            ->count([]);
-        
-        $content = $response->getContent();
-
-        $count = json_decode($content, true); 
-        $count = $count['hydra:totalItems'];
-
-        $this->assertEquals($count, $queryResult);
-
-        $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
-    }
-
-    public function testJsonFormat(): void 
-    { 
-        $response = static::createClient()->request('GET', 'http://localhost/api/mails');
-
-        $this->assertMatchesResourceCollectionJsonSchema(Mail::class);
+        $response = static::createClient()->request('GET', 'http://localhost/api/mails', ["auth_bearer" => $this->tokenUser]);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
     public function testGetMail() 
     {
-        $req = static::createClient()->request('GET', 'http://localhost/api/mails');
-        $queryResult = $this->entityManager 
-            ->getRepository(Mail::class)
-            ->count([]);
+        $req = Utils::request("GET", 'http://localhost/api/mails', []);
+        $this->assertResponseStatusCodeSame(401);
 
-        $content = $req->getContent();
+        $req = Utils::request("GET", 'http://localhost/api/mails', [], $this->tokenUser);
+        $this->assertResponseStatusCodeSame(401);
 
-        $count = json_decode($content, true);
-        $count = $count['hydra:totalItems'];
-
-        $this->assertEquals($count, $queryResult);
-
+        $req = Utils::request("GET", 'http://localhost/api/mails', [], $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
     //get{id}
