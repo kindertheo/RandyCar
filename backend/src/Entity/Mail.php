@@ -11,8 +11,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource(
  *  itemOperations={
  *      "get" ={
- *              "access_control"="is_granted('ROLE_ADMIN')",
- *              "access_control"="is_granted('ROLE_USER') and object.getReceiver() == user",
+ *              "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object.getReceiver() == user",
  *      },
  *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
  *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
@@ -20,10 +19,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *  },
  *  collectionOperations={
  *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
-*     "get" ={
-*              "access_control"="is_granted('ROLE_ADMIN')",
-*              "access_control"="is_granted('ROLE_USER') and object.getReceiver() == user",
-*       },
+ *    "get" ={
+ *    "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object.getReceiver() == user",
+ * 
+ *     },
  *  }
  * )
  */

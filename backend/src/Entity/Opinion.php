@@ -15,7 +15,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource(
  *  itemOperations={
  *      "get" ={
- *              "access_control"="is_granted('ROLE_ADMIN')",
  *              "access_control"="is_granted('ROLE_USER')",
  *      },
  *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
@@ -24,11 +23,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *  },
  *  collectionOperations={
  *    "post" ={
- *      "access_control"="is_granted('ROLE_ADMIN')",
  *      "access_control"="is_granted('ROLE_USER')",
  *      },
  *    "get" ={
- *             "access_control"="is_granted('ROLE_ADMIN')",
  *             "access_control"="is_granted('ROLE_USER')",
  *      },
  *  }
