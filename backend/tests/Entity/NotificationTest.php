@@ -34,7 +34,7 @@ class NotificationTest extends ApiTestCase
 
     public function testCountAndSuccess(): void
     {
-        $response = static::createClient()->request('GET', 'http://localhost/api/notifications', ['auth_bearer' => $this->tokenUser]);
+        $response = static::createClient()->request('GET', 'http://localhost/api/notifications', ['auth_bearer' => $this->tokenAdmin]);
 
         $queryResult = $this->entityManager
             ->getRepository(Notification::class)
@@ -51,9 +51,42 @@ class NotificationTest extends ApiTestCase
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
     }
 
+    public function testUserExtensionUser(): void 
+    { 
+        $faker = Factory::create('fr_FR');
+
+        $user = $this->entityManager->merge($this->user);
+        $numberNotifs = 10;
+
+        for($i=0; $i < $numberNotifs; $i++)
+        {
+            $notificationEntity = new Notification();
+            $notificationEntity
+                ->setReceiver($user)
+                ->setObject($faker->word())
+                ->setContent($faker->word())
+                ->setCreatedAt($faker->dateTimeBetween("-200 days", "now") )
+                ->setReaded($faker->boolean());
+            $this->entityManager->persist($notificationEntity);
+        }
+        $this->entityManager->flush();   
+
+        $notifCollection = Utils::request("GET", "http://localhost/api/notifications", [], $this->tokenUser);
+        $content = $notifCollection->getContent();
+        $count = count(json_decode($content, true));
+        $this->assertEquals($count, $numberNotifs);
+
+
+        foreach( json_decode($content, true) as $value )
+        {
+            $this->assertTrue($value['receiver'] == '/api/users/'. $this->user->getId());
+        }
+    }
+
+
     public function testJsonFormat(): void 
     { 
-        $response = static::createClient()->request('GET', 'http://localhost/api/notifications');
+        $response = static::createClient()->request('GET', 'http://localhost/api/notifications', ["auth_bearer" => $this->tokenUser]);
 
         $this->assertMatchesResourceCollectionJsonSchema(Notification::class);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
@@ -61,20 +94,15 @@ class NotificationTest extends ApiTestCase
 
     public function testGetNotification() 
     {
-        $req = static::createClient()->request('GET', 'http://localhost/api/notifications');
-        $queryResult = $this->entityManager 
-            ->getRepository(Notification::class)
-            ->count([]);
-
-        $content = $req->getContent();
-
-        $count = json_decode($content, true);
-        $count = $count['hydra:totalItems'];
-
-        $this->assertEquals($count, $queryResult);
-
+        $req = Utils::request("GET", 'http://localhost/api/notifications', [], $this->tokenUser); 
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+
+        $req = Utils::request("GET", 'http://localhost/api/notifications', [], $this->tokenAdmin); 
+        $this->assertResponseIsSuccessful();
+
+        $req = Utils::request("GET", 'http://localhost/api/notifications', []); 
+        $this->assertResponseStatusCodeSame(401);
+        
     }
 
     //get{id}
@@ -169,6 +197,7 @@ class NotificationTest extends ApiTestCase
 
         $userArray = $this->entityManager->getRepository(User::class)->findAll();
         $user = $userArray[random_int(0, count($userArray) -1 )];
+        $user = $this->entityManager->merge($user);
 
         $words = $faker->word();
         $content = $faker->sentence(10);

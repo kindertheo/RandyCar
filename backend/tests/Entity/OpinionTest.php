@@ -26,6 +26,36 @@ class OpinionTest extends ApiTestCase
     
         $this->tokenAdmin = Utils::getToken($this->admin);
         $this->tokenUser = Utils::getToken($this->user);
+
+        $faker = Factory::create('fr_FR');
+        $user = $this->entityManager->merge($this->user);
+        $this->numberOpinions = 10;
+
+        $userCollection = $this->entityManager->getRepository(User::class)->findAll();
+
+        $randomEmitter = $this->entityManager->merge($this->user);
+
+        for($i=0; $i < $this->numberOpinions; $i++)
+        {
+            $randomReceptor = $userCollection[random_int(0, count($userCollection)-1)];
+            
+            $content = $faker->sentence(10);
+
+            $randomReceptor = $this->entityManager->merge($randomReceptor);
+            $this->entityManager->persist($randomEmitter);
+            $this->entityManager->persist($randomReceptor);
+    
+            $opinionEntity = new Opinion();
+            $opinionEntity->setEmitter($randomEmitter)
+                ->setReceptor($randomReceptor)
+                ->setMessage($content)
+                ->setCreatedAt(new \DateTime('now'))
+                ->setNotation(random_int(1,5));
+    
+            $this->entityManager->persist($opinionEntity);
+        }
+        $this->entityManager->flush();  
+
     }
 
     protected function tearDown(): void
@@ -36,12 +66,26 @@ class OpinionTest extends ApiTestCase
         $this->entityManager = null;
     }
 
+    public function testUserExtensionUser(): void 
+    { 
+ 
+        $notifCollection = Utils::request("GET", "http://localhost/api/opinions", [], $this->tokenUser);
+        $content = $notifCollection->getContent();
+        $count = count(json_decode($content, true));
+        $this->assertEquals($count, $this->numberOpinions);
+
+
+        foreach( json_decode($content, true) as $value )
+        {
+            $this->assertTrue($value['emitter'] == '/api/users/'. $this->user->getId());
+        }
+    }
+
     //GET
     public function testGetOpinions()
     {
 
-        $req = Utils::request("GET", 'http://localhost/api/opinions', [], $this->tokenUser); 
-        $this->assertResponseIsSuccessful();
+        // userAccess is already tested in testUserExtensionUser
 
         $req = Utils::request("GET", 'http://localhost/api/opinions', [], $this->tokenAdmin); 
         $this->assertResponseIsSuccessful();
@@ -61,13 +105,13 @@ class OpinionTest extends ApiTestCase
     //get{id}
     public function testGetById()
     {
-
         $random = Utils::getRandomIdByCollections(Opinion::class, $this->entityManager);
+
         $req = Utils::request('GET', "http://localhost/api/opinions/". $random, []);
         $this->assertResponseStatusCodeSame(401);
         
-        $req = Utils::request('GET', "http://localhost/api/opinions/". $random, [], $this->tokenUser);
-        $this->assertResponseIsSuccessful();
+        // $req = Utils::request('GET', "http://localhost/api/opinions/". $random, [], $this->tokenUser);
+        // $this->assertResponseIsSuccessful();
 
         $req = Utils::request('GET', "http://localhost/api/opinions/". $random, [], $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
@@ -80,15 +124,20 @@ class OpinionTest extends ApiTestCase
             "message" => "testPut"
         ];
 
-        $randomOpinion = Utils::getRandomIdByCollections(Opinion::class, $this->entityManager);
+        $user = $this->entityManager->merge($this->user);
 
-        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion, $body);
+        $randomOpinion = $user->getOpinions();
+        $randomOpinion = $randomOpinion[0][0];
+
+        dump($randomOpinion); ob_flush();
+
+        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion->getId(), $body);
         $this->assertResponseStatusCodeSame(401);
 
-        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion, $body, $this->tokenUser);
+        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion->getId(), $body, $this->tokenUser);
         $this->assertResponseStatusCodeSame(403);
 
-        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion, $body, $this->tokenAdmin);
+        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $randomOpinion->getId(), $body, $this->tokenAdmin);
         $this->assertResponseIsSuccessful(204);
 
     }
