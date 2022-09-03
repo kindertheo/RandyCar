@@ -177,18 +177,40 @@ class NotificationTest extends ApiTestCase
             'body' => json_encode($body)
             ]
         );
+        $this->assertResponseStatusCodeSame(401);
+
+        //TODO : for user token, need to work ? 
+        $user = $this->entityManager->merge($this->user);
+        $notification = $user->getNotifications();
+        dump($notification[0]); ob_flush(); // is null ?
+        $id = $notification[0]->getId();
+        dump($id); ob_flush();
+
+        $req = Utils::request('PUT', 'http://localhost/api/notifications/', $id, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(401);
+
+        $req = Utils::request('PUT', 'http://localhost/api/notifications/', $body, $this->tokenAdmin );
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
     public function testDeleteNotification() 
     { 
         $allId = $this->entityManager->getRepository(Notification::class)->findAll();
         $randomNotification = $allId[random_int(0, count($allId) -1 )];
+
         // $notification->isReaded();
+
         $this->assertIsBool($randomNotification->isReaded());
-        $req = static::createClient()->request('DELETE', 'http://localhost/api/notifications/' . $randomNotification->getId());
+        
+        $req = static::createClient()->request('DELETE', 'http://localhost/api/notifications/' . $randomNotification->getId(), ['auth_bearer' => $this->tokenAdmin]);
         $this->assertResponseIsSuccessful();
+
+        $req = Utils::request('DELETE', 'http://localhost/api/notifications/' . $randomNotification, [], $this->tokenUser);
+        $this->assertResponseIsSuccessful();
+
+        $req = Utils::request('DELETE', 'http://localhost/api/notifications/'. $randomNotification, []);
+        $this->assertResponseStatusCodeSame(403);
+
     }
 
     public function testCreateNotification(){
