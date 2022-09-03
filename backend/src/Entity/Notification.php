@@ -5,10 +5,26 @@ namespace App\Entity;
 use App\Repository\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use APp\Doctrine\UserExtension; 
 
 /**
  * @ORM\Entity(repositoryClass=NotificationRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get" ={
+ *              "access_control"="is_granted('ROLE_USER')",
+ *      },
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+ *    "get" ={
+ *              "access_control"="is_granted('ROLE_USER')",
+ *      },
+ *  }
+ * )
  */
 class Notification
 {

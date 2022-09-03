@@ -64,7 +64,7 @@ class AddressTest extends ApiTestCase
     public function testCountAndSuccess(): void
     {
         $response = static::createClient()->request('GET', 'http://localhost/api/addresses');
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertCountAndSuccess($response, Address::class);
 
         $response = static::createClient()->request('GET', 'http://localhost/api/addresses', ['auth_bearer' => $this->tokenUser]);
         $this->assertCountAndSuccess($response, Address::class);
@@ -97,7 +97,8 @@ class AddressTest extends ApiTestCase
         $this->assertIsNumeric($index);
 
         $response = static::createClient()->request('GET', 'http://localhost/api/addresses/'. $index);
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
 
         $response = static::createClient()->request('GET', 'http://localhost/api/addresses/'. $index, ['auth_bearer' => $this->tokenUser]);
         $this->assertResponseIsSuccessful();

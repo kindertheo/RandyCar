@@ -8,7 +8,23 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MailRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={
+ *      "get" ={
+ *              "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object.getReceiver() == user",
+ *      },
+ *      "delete"={"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "put" = {"access_control"="is_granted('ROLE_ADMIN')"},
+ *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  collectionOperations={
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
+ *    "get" ={
+ *    "access_control"="is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and object.getReceiver() == user",
+ * 
+ *     },
+ *  }
+ * )
  */
 class Mail
 {

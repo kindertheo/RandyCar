@@ -6,6 +6,8 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Messages;
 use DateTime;
 use DateTimeImmutable;
+use Faker\Factory;
+use App\Entity\User;
 
 class MessageTest extends ApiTestCase
 {
@@ -80,4 +82,27 @@ class MessageTest extends ApiTestCase
     }
 
 
+    public function testCreateMail(){
+        $faker = Factory::create('fr_FR');
+
+        $userArray = $this->entityManager->getRepository(User::class)->findAll();
+
+        $words = $faker->word();
+        $content = $faker->sentence(10);
+        $date = \DateTimeImmutable::createFromMutable( $faker->dateTimeBetween("-200 days", "now") );
+        $messageEntity = new Messages();
+        $messageEntity->setCreatedAt($date)
+            ->setContent($content)
+            ->setAuthor($userArray[random_int(0, count($userArray) - 1 )])
+            ->setReceiver($userArray[random_int(0, count($userArray) - 1 )])
+            ->setIsRead($faker->dateTimeBetween('-200 days', 'now'));
+        
+
+        $this->entityManager->persist($messageEntity);
+        $this->entityManager->flush();
+
+        $message = $this->entityManager->getRepository(Messages::class)->findOneBy(['created_at' => $date, 'content' => $content]);
+
+        $this->assertNotNull($message);
+    }
 }

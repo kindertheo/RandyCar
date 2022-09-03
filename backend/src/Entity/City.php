@@ -19,8 +19,8 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *      "patch" = {"access_control"="is_granted('ROLE_ADMIN')"}
  *  },
  *  collectionOperations={
- *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
  *    "get" ={"access_control"="is_granted('ROLE_USER')"},
+ *    "post" ={"access_control"="is_granted('ROLE_ADMIN')"},
  *  }
  * )
  */
