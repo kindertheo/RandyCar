@@ -112,15 +112,24 @@ class NotificationTest extends ApiTestCase
         $objectId = $id[0];
         $this->assertIsObject($objectId); 
 
+
         //get Object + index separate
         $index = $objectId->getId(); 
         $this->assertIsNumeric($index);
 
         // use Index as slug
-        $response = static::createClient()->request('GET', 'http://localhost/api/notifications/'. $index);
-
+        $response = static::createClient()->request('GET', 'http://localhost/api/notifications/'. $index, ['auth_bearer' => $this->tokenAdmin]);
         $this->assertResponseIsSuccessful();
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
+
+
+        //TODO : not working, need to merge user
+        $user = $this->entityManager->merge($this->user);
+        $opinions = $user->getNotifications();
+        $id = $opinions[0]->getId();
+        $response = Utils::request('GET', 'http://localhost/api/notifications/' .$id, [], $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
+
     }
 
     //post 
@@ -147,9 +156,15 @@ class NotificationTest extends ApiTestCase
             'body' => json_encode($body)
             ]
         );
+        $this->assertResponseStatusCodeSame(401);
 
+        $req = Utils::request("POST", 'http://localhost/api/notifications', $body, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
+
+        
+
+        $req = Utils::request("POST", 'http://localhost/api/notifications', $body, $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
-        $this->assertResponseHeaderSame('content-type', 'application/json; charset=utf-8');
     }
 
     public function testPutNotification()
