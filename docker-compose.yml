@@ -54,7 +54,7 @@ services:
         build: docker/frontend/
         container_name: angular
         ports:
-            - "8082:4200"
+            - "4200:4200"
             - "49153:49153"
         volumes:
             - ./frontend:/var/www/frontend
