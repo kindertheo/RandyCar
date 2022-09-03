@@ -1,0 +1,139 @@
+/* CUSTOM WIDTHS */
+.w-10, .w-xs-10 {
+  width: 10% !important;
+}
+
+.w-15, .w-xs-15 {
+  width: 15% !important;
+}
+
+.w-20, .w-xs-20 {
+  width: 20% !important;
+}
+
+/* BREAKPOINTS */
+/* SM breakpoint */
+@media (min-width: 576px) {
+  /* CUSTOM WIDTHS */
+  .w-sm-10 {
+    width: 10% !important;
+  }
+
+  .w-sm-15 {
+    width: 15% !important;
+  }
+
+  .w-sm-20 {
+    width: 20% !important;
+  }
+}
+/* MD breakpoint*/
+@media (min-width: 768px) {
+  /* CUSTOM WIDTHS */
+  .w-md-10 {
+    width: 10% !important;
+  }
+
+  .w-md-15 {
+    width: 15% !important;
+  }
+
+  .w-md-20 {
+    width: 20% !important;
+  }
+}
+/* LG breakpoint */
+@media (min-width: 992px) {
+  /* CUSTOM WIDTHS */
+  .w-lg-10 {
+    width: 10% !important;
+  }
+
+  .w-lg-15 {
+    width: 15% !important;
+  }
+
+  .w-lg-20 {
+    width: 20% !important;
+  }
+
+  .w-lg-50 {
+    width: 50% !important;
+  }
+}
+body {
+  background-color: #1E2D3C;
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg%27%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-light .navbar-toggler {
+  border-color: #FBFBFB;
+}
+
+.btn-primary {
+  background-color: #FC6418;
+}
+
+.btn-secondary {
+  background-color: #FC945C;
+}
+
+.border-primary {
+  border-color: #FC6418;
+}
+
+.border-secondary {
+  border-color: #FC945C;
+}
+
+.btn-custom {
+  background-color: #1E2D3C;
+}
+
+.color-primary {
+  color: #FC6418;
+}
+
+.border-primary {
+  border-color: #FC6418 !important;
+}
+
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+hr {
+  background-color: #FC6418;
+}
+
+footer ul > li, .link-secondary {
+  color: white;
+}
+
+footer ul > li:hover, .link-secondary:hover {
+  color: #FC6418;
+}
+
+.divider {
+  height: 1px;
+  width: 80%;
+  background-color: black;
+}
+
+.fs-7 {
+  font-size: 0.8rem;
+}
+
+.card-trip {
+  box-shadow: 4px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 4px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 3px 7px 0px rgba(0, 0, 0, 0.75);
+}
