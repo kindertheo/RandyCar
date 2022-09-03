@@ -86,7 +86,6 @@ class OpinionTest extends ApiTestCase
     public function testGetOpinions()
     {
 
-        // userAccess is already tested in testUserExtensionUser
 
         $req = Utils::request("GET", 'http://localhost/api/opinions', [], $this->tokenAdmin); 
         $this->assertResponseIsSuccessful();
@@ -117,7 +116,6 @@ class OpinionTest extends ApiTestCase
         $req = Utils::request('GET', "http://localhost/api/opinions/". $id, []);
         $this->assertResponseStatusCodeSame(401);
         
-        // TODO : resolve this problem, more than one result was found :
         $req = Utils::request('GET', "http://localhost/api/opinions/". $id, [], $this->tokenUser);
         $this->assertResponseIsSuccessful();
 
@@ -134,12 +132,15 @@ class OpinionTest extends ApiTestCase
 
         $opinion = Utils::getRandomIdByCollections(Opinion::class, $this->entityManager);
 
+
         $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $opinion, $body);
         $this->assertResponseStatusCodeSame(401);
-        
-        // TODO : why tf is it not working ?? more than one result found 
-        // $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $opinion, $body, $this->tokenUser);
-        // $this->assertResponseIsSuccessful(403);
+
+        $user = $this->entityManager->merge($this->user);
+        $opinions = $user->getOpinions();
+        $id = $opinions[0]->getId();
+        $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $id, $body, $this->tokenUser);
+        $this->assertResponseStatusCodeSame(403);
 
         $req = Utils::request('PUT', 'http://localhost/api/opinions/'. $opinion, $body, $this->tokenAdmin);
         $this->assertResponseIsSuccessful(204);
@@ -149,20 +150,16 @@ class OpinionTest extends ApiTestCase
     // TEST DELETE 
     public function testDeleteOpinions() 
     { 
-        // $allId = $this->entityManager->getRepository(Opinion::class)->findAll();
-        // $randomOpinion = $allId[random_int(0, count($allId) -1 )];
-        // $req = static::createClient()->request('DELETE', 'http://localhost/api/opinions/' . $randomOpinion->getId());
-        // $this->assertResponseIsSuccessful();
-    
         $random = Utils::getRandomIdByCollections(Opinion::class, $this->entityManager);
 
-        // cannot delete 
         $req = Utils::request("DELETE", 'http://localhost/api/opinions/'. $random, []);
         $this->assertResponseStatusCodeSame(401);
-
-        // TODO : unhautorized to delete. Same sh*t multiple row within the request 
-        // $req = Utils::request("DELETE", 'http://localhost/api/opinions/'. $random, [], $this->tokenUser );
-        // $this->assertResponseStatusCodeSame(403);
+ 
+        $user = $this->entityManager->merge($this->user);
+        $opinions = $user->getOpinions();
+        $id = $opinions[0]->getId();
+        $req = Utils::request("DELETE", 'http://localhost/api/opinions/'. $id, [], $this->tokenUser );
+        $this->assertResponseStatusCodeSame(403);
 
 
         $req = Utils::request("DELETE", 'http://localhost/api/opinions/'. $random, [], $this->tokenAdmin);
