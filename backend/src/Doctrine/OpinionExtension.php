@@ -36,8 +36,7 @@ final class OpinionExtension implements QueryCollectionExtensionInterface, Query
         }
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
-        $queryBuilder->andWhere(sprintf('%s.receptor = :current_user', $rootAlias));
-        $queryBuilder->orWhere(sprintf('%s.emitter = :current_user', $rootAlias));
+        $queryBuilder->andWhere(sprintf('%s.receptor = :current_user OR %s.emitter = :current_user', $rootAlias, $rootAlias));
         $queryBuilder->setParameter('current_user', $this->security->getUser()->getId());
     }
 }
