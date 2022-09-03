@@ -110,16 +110,18 @@ class OpinionTest extends ApiTestCase
     //get{id}
     public function testGetById()
     {
-        $random = Utils::getRandomIdByCollections(Opinion::class, $this->entityManager);
+        $user = $this->entityManager->merge($this->user);
+        $opinions = $user->getOpinions();
+        $id = $opinions[0]->getId();
 
-        $req = Utils::request('GET', "http://localhost/api/opinions/". $random, []);
+        $req = Utils::request('GET', "http://localhost/api/opinions/". $id, []);
         $this->assertResponseStatusCodeSame(401);
         
         // TODO : resolve this problem, more than one result was found :
-        // $req = Utils::request('GET', "http://localhost/api/opinions/". $random, [], $this->tokenUser);
-        // $this->assertResponseIsSuccessful();
+        $req = Utils::request('GET', "http://localhost/api/opinions/". $id, [], $this->tokenUser);
+        $this->assertResponseIsSuccessful();
 
-        $req = Utils::request('GET', "http://localhost/api/opinions/". $random, [], $this->tokenAdmin);
+        $req = Utils::request('GET', "http://localhost/api/opinions/". $id, [], $this->tokenAdmin);
         $this->assertResponseIsSuccessful();
     }
 
