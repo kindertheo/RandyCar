@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DestroyDatabaseCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'destroy:database';
+    protected static $defaultName = 'destroy:database:test';
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -24,7 +24,8 @@ class DestroyDatabaseCommand extends Command
         $command = $this->getApplication()->find('doctrine:database:drop');
 
         $arguments = [
-            '--force'  => true,
+            '--force' => true,
+            '--env' => 'test'
         ];
 
         $greetInput = new ArrayInput($arguments);
@@ -33,19 +34,30 @@ class DestroyDatabaseCommand extends Command
 
 
         $command = $this->getApplication()->find('doctrine:database:create');
-        $returnCode = $command->run(new ArrayInput([]), $output);
+        $arguments = [
+            '--env' => 'test'
+        ];
+        $greetInput = new ArrayInput($arguments);
+        $returnCode = $command->run($greetInput, $output);
 
 
 
         $command = $this->getApplication()->find('doctrine:schema:create');
-        $returnCode = $command->run(new ArrayInput([]), $output);
-
-
         $arguments = [
-            '--no-ansi' => true,
+            '--no-interaction' => true,
+            '--env' => 'test'
         ];
+        $greetInput = new ArrayInput($arguments);
+        $returnCode = $command->run($greetInput, $output);
+
+
+        $arguments = new ArrayInput([
+            '--env' => 'test'
+        ]);
+        $arguments->setInteractive(false);
+        
         $command = $this->getApplication()->find('doctrine:fixtures:load');
-        $returnCode = $command->run(new ArrayInput($arguments), $output);
+        $returnCode = $command->run($arguments, $output);
 
         // ... put here the code to create the user
 
